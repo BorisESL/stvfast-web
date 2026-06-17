@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S.Tv.Fast — Plataforma IPTV para Revendedores</title>
+<title>Stfast Stream — Plataforma de Streaming para Revendedores</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -15,15 +15,16 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--white);font-family:'Plus Jakarta Sans',sans-serif;overflow-x:hidden}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,9,15,0.9);backdrop-filter:blur(12px);border-bottom:1px solid rgba(191,0,255,0.15);padding:0 5%}
-.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
-.nav-logo{font-family:'Orbitron',monospace;font-size:18px;font-weight:900;color:var(--white);letter-spacing:2px}
-.nav-logo span{color:var(--purple)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,9,15,0.72);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(191,0,255,0.2);padding:0 5%;box-shadow:0 4px 30px rgba(0,0,0,0.4)}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav-logo{font-family:'Orbitron',monospace;font-size:18px;font-weight:900;background:linear-gradient(135deg,#BF00FF 0%,#9B59B6 50%,#7B2FBE 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:2px;text-decoration:none}
 .nav-links{display:flex;gap:32px;list-style:none}
-.nav-links a{font-size:13px;color:var(--gray);text-decoration:none;transition:color .2s;font-weight:500}
+.nav-links a{font-size:13px;color:var(--gray);text-decoration:none;transition:color .25s;font-weight:500;position:relative;padding-bottom:3px}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--purple),var(--purple2));border-radius:2px;transition:width .3s ease}
 .nav-links a:hover{color:var(--white)}
-.nav-cta{background:var(--purple);color:#fff;font-size:13px;font-weight:600;padding:9px 22px;border-radius:8px;text-decoration:none;transition:opacity .2s}
-.nav-cta:hover{opacity:.85}
+.nav-links a:hover::after{width:100%}
+.nav-cta{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;font-size:13px;font-weight:600;padding:9px 22px;border-radius:8px;text-decoration:none;transition:all .3s;box-shadow:0 0 18px rgba(191,0,255,0.35)}
+.nav-cta:hover{box-shadow:0 0 32px rgba(191,0,255,0.65);transform:translateY(-1px)}
 
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 5% 60px;position:relative;overflow:hidden}
 .hero-glow{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(191,0,255,0.1) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
@@ -128,15 +129,17 @@ footer{background:var(--bg);border-top:1px solid rgba(255,255,255,0.05);padding:
 
 /* ─── PLATAFORMAS ─── */
 .platforms-section{background:var(--bg2)}
-.platforms-carousel{display:flex;gap:20px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none}
-.platforms-carousel::-webkit-scrollbar{display:none}
-.platform-card{flex:0 0 160px;background:var(--bg3);border:1px solid rgba(191,0,255,0.1);border-radius:16px;padding:28px 16px;text-align:center;transition:border-color .2s}
-.platform-card:hover{border-color:rgba(191,0,255,0.35)}
-.platform-card.coming{opacity:.5}
-.platform-icon{font-size:44px;margin-bottom:12px;display:block}
-.platform-name{font-size:13px;font-weight:700;color:#fff;margin-bottom:6px}
-.platform-badge{font-size:10px;font-weight:600;color:var(--purple);background:rgba(191,0,255,0.1);border-radius:100px;padding:2px 10px;display:inline-block;letter-spacing:1px}
-.platform-card.coming .platform-badge{color:var(--gray)}
+.platforms-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:14px}
+.platform-card{background:var(--bg3);border:1px solid rgba(191,0,255,0.1);border-radius:16px;padding:22px 12px;text-align:center;transition:all .3s}
+.platform-card:hover{border-color:rgba(191,0,255,0.4);transform:translateY(-5px);box-shadow:0 10px 28px rgba(191,0,255,0.1)}
+.platform-card.coming{opacity:.55}
+.platform-card.coming:hover{opacity:.75;transform:translateY(-3px)}
+.platform-svg{width:52px;height:52px;margin:0 auto 12px}
+.platform-svg svg{width:100%;height:100%}
+.platform-name{font-size:11px;font-weight:700;color:#fff;margin-bottom:6px;line-height:1.3}
+.platform-badge{font-size:9px;font-weight:700;border-radius:100px;padding:2px 8px;display:inline-block;letter-spacing:0.5px}
+.platform-badge.available{color:#3DDC84;background:rgba(61,220,132,0.12)}
+.platform-badge:not(.available){color:var(--gray);background:rgba(139,156,182,0.1)}
 
 /* ─── CÓMO FUNCIONA ─── */
 .how-bg{background:var(--bg)}
@@ -176,6 +179,17 @@ footer{background:var(--bg);border-top:1px solid rgba(255,255,255,0.05);padding:
 .faq-item.open .faq-chevron{transform:rotate(180deg)}
 .faq-item.open .faq-a{max-height:300px}
 
+/* ─── ESTADÍSTICAS ─── */
+.stats-bar{background:linear-gradient(135deg,rgba(191,0,255,0.06),rgba(153,0,204,0.03));border-top:1px solid rgba(191,0,255,0.12);border-bottom:1px solid rgba(191,0,255,0.12);padding:44px 5%}
+.stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:24px;text-align:center}
+.stat-number{font-family:'Orbitron',monospace;font-size:clamp(28px,4vw,44px);font-weight:900;background:linear-gradient(135deg,#BF00FF,#9B59B6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:inline-block;line-height:1}
+.stat-suffix{font-family:'Orbitron',monospace;font-size:clamp(18px,2.5vw,26px);font-weight:900;background:linear-gradient(135deg,#BF00FF,#9B59B6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-label{font-size:13px;color:var(--gray);margin-top:8px}
+
+/* ─── ANIMACIONES SCROLL ─── */
+.fade-up{opacity:0;transform:translateY(36px);transition:opacity .75s ease,transform .75s ease}
+.fade-up.visible{opacity:1;transform:none}
+
 @media(max-width:768px){
   .nav-links{display:none}
   .slide-img img{max-height:280px}
@@ -184,7 +198,7 @@ footer{background:var(--bg);border-top:1px solid rgba(255,255,255,0.05);padding:
   .how-grid{grid-template-columns:1fr}
   .how-step::after{display:none}
   .partners-inner{grid-template-columns:1fr}
-  .platform-card{flex:0 0 130px}
+  .platforms-grid{grid-template-columns:repeat(auto-fit,minmax(100px,1fr))}
 }
 </style>
 </head>
@@ -192,12 +206,12 @@ footer{background:var(--bg);border-top:1px solid rgba(255,255,255,0.05);padding:
 
 <div class="disclaimer-overlay" id="disclaimerOverlay">
   <div class="disclaimer-box">
-    <div class="disclaimer-logo">S.<span>Tv</span>.Fast</div>
+    <div class="disclaimer-logo">Stfast Stream</div>
     <h2 class="disclaimer-title">Aviso Legal</h2>
     <p class="disclaimer-text">
-      <strong>S.Tv.Fast</strong> es una plataforma tecnológica de gestión para revendedores.<br><br>
-      <strong>S.Tv.Fast no provee, almacena ni distribuye canales de televisión, contenido IPTV ni señales de terceros.</strong><br><br>
-      El acceso y uso del contenido IPTV es responsabilidad exclusiva del usuario final y del revendedor. S.Tv.Fast actúa únicamente como proveedor del software de gestión y la aplicación cliente.<br><br>
+      <strong>Stfast Stream</strong> es una plataforma tecnológica de gestión para revendedores.<br><br>
+      <strong>Stfast Stream no provee, almacena ni distribuye canales de televisión, contenido de streaming ni señales de terceros.</strong><br><br>
+      El acceso y uso de cualquier contenido de streaming es responsabilidad exclusiva del usuario final y del revendedor. Stfast Stream actúa únicamente como proveedor del software de gestión y la aplicación cliente.<br><br>
       Al continuar, declaras haber leído y aceptado este aviso legal.
     </p>
     <button class="disclaimer-btn" onclick="acceptDisclaimer()">Entendido, continuar</button>
@@ -207,7 +221,7 @@ footer{background:var(--bg);border-top:1px solid rgba(255,255,255,0.05);padding:
 
 <nav>
   <div class="nav-inner">
-    <div class="nav-logo">S.<span>Tv</span>.Fast</div>
+    <div class="nav-logo">Stfast Stream</div>
     <ul class="nav-links">
       <li><a href="#app">La App</a></li>
       <li><a href="#features">Características</a></li>
@@ -223,20 +237,41 @@ footer{background:var(--bg);border-top:1px solid rgba(255,255,255,0.05);padding:
 <section class="hero">
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
-  <div class="hero-badge"><span class="hero-badge-dot"></span>Plataforma IPTV profesional para revendedores</div>
-  <h1 class="hero-title">S.<span>Tv</span>.Fast</h1>
-  <p class="hero-tagline">Tu negocio IPTV con app propia, panel completo, activación por código y DNS automático. Todo listo para revender desde hoy.</p>
+  <div class="hero-badge"><span class="hero-badge-dot"></span>Plataforma de streaming profesional para revendedores</div>
+  <h1 class="hero-title">Stfast Stream</h1>
+  <p class="hero-tagline">Tu negocio de streaming con app propia, panel completo, activación por código y DNS automático. Todo listo para revender desde hoy.</p>
   <div class="hero-btns">
     <a href="#planes" class="btn-primary">▶ Ver planes</a>
-    <button class="btn-secondary" onclick="downloadPDF()">⬇ Descargar info PDF</button>
+    <a href="#como-funciona" class="btn-secondary">¿Cómo funciona?</a>
   </div>
 </section>
 
-<section class="section" id="app">
+<div class="stats-bar fade-up">
+  <div class="stats-inner">
+    <div>
+      <span class="stat-number" data-target="500">0</span><span class="stat-suffix">+</span>
+      <div class="stat-label">Revendedores activos</div>
+    </div>
+    <div>
+      <span class="stat-number" data-target="99">0</span><span class="stat-suffix">.9%</span>
+      <div class="stat-label">Uptime garantizado</div>
+    </div>
+    <div>
+      <span class="stat-number" data-target="20">0</span><span class="stat-suffix">+</span>
+      <div class="stat-label">DNS de respaldo</div>
+    </div>
+    <div>
+      <span class="stat-number" data-target="3">0</span><span class="stat-suffix"> años</span>
+      <div class="stat-label">En el mercado</div>
+    </div>
+  </div>
+</div>
+
+<section class="section fade-up" id="app">
   <div class="section-inner">
     <div class="section-tag">La aplicación</div>
     <h2 class="section-title">Cada pantalla, diseñada para impresionar</h2>
-    <p class="section-sub">Tu cliente verá una app profesional, oscura y fluida — con tu logo. Así se ve S.Tv.Fast en acción.</p>
+    <p class="section-sub">Tu cliente verá una app profesional, oscura y fluida — con tu logo. Así se ve Stfast Stream en acción.</p>
     <div class="slider-outer">
       <div class="slider-viewport">
         <div class="slider-track" id="sliderTrack"></div>
@@ -252,7 +287,7 @@ footer{background:var(--bg);border-top:1px solid rgba(255,255,255,0.05);padding:
   </div>
 </section>
 
-<section class="section features-bg" id="features">
+<section class="section features-bg fade-up" id="features">
   <div class="section-inner">
     <div class="section-tag">Por qué elegirnos</div>
     <h2 class="section-title">Todo lo que necesitas para revender</h2>
@@ -260,56 +295,150 @@ footer{background:var(--bg);border-top:1px solid rgba(255,255,255,0.05);padding:
     <div class="features-grid">
       <div class="feat-card"><div class="feat-icon">🔑</div><div class="feat-title">Activación por código único</div><div class="feat-desc">Sin URLs ni contraseñas. Genera un código desde el panel y el cliente lo ingresa directamente. El panel lo copia listo para WhatsApp.</div></div>
       <div class="feat-card"><div class="feat-icon">🌐</div><div class="feat-title">Failover DNS automático</div><div class="feat-desc">Hasta 20 DNS configurables. Si uno falla, la app cambia al siguiente sin que el cliente lo note. Cero interrupciones del servicio.</div></div>
-      <div class="feat-card"><div class="feat-icon">📺</div><div class="feat-title">Cambio automático de canal</div><div class="feat-desc">Si un canal no carga en 3 intentos, la app lo salta automáticamente. Sin pantallas negras, sin llamadas molestas al soporte.</div></div>
+      <div class="feat-card"><div class="feat-icon">📺</div><div class="feat-title">Cambio automático de contenido</div><div class="feat-desc">Si un canal no carga en 3 intentos, la app lo salta automáticamente. Sin pantallas negras, sin llamadas molestas al soporte.</div></div>
       <div class="feat-card"><div class="feat-icon">🎨</div><div class="feat-title">Logo y marca personalizada</div><div class="feat-desc">Cada revendedor tiene su propio logo en la app. Tu cliente ve tu marca, no la nuestra. Identidad visual 100% tuya.</div></div>
       <div class="feat-card"><div class="feat-icon">📊</div><div class="feat-title">Superpanel con ganancias</div><div class="feat-desc">Visualiza tus ingresos, clientes activos y vencimientos. Crea planes, gestiona revendedores y controla todo desde un solo panel.</div></div>
       <div class="feat-card"><div class="feat-icon">💬</div><div class="feat-title">Accesos listos para WhatsApp</div><div class="feat-desc">El panel genera automáticamente el mensaje de bienvenida con el código de activación. Solo copias y pegas al cliente.</div></div>
-      <div class="feat-card"><div class="feat-icon">🎬</div><div class="feat-title">Catálogo masivo de contenido</div><div class="feat-desc">Miles de películas, series y canales en vivo. Estrenos 2026, series de Netflix, HBO, Amazon y más.</div></div>
+      <div class="feat-card"><div class="feat-icon">🎬</div><div class="feat-title">Catálogo masivo de contenido</div><div class="feat-desc">Miles de películas, series y canales en vivo. Estrenos 2026, series de las plataformas más populares y mucho más.</div></div>
       <div class="feat-card"><div class="feat-icon">📱</div><div class="feat-title">TV Box, celular y tablet</div><div class="feat-desc">Interfaz optimizada para Android TV Box, smartphones y tablets. Navegación con D-pad incluida para control remoto.</div></div>
     </div>
   </div>
 </section>
 
-<section class="section platforms-section" id="plataformas">
+<section class="section platforms-section fade-up" id="plataformas">
   <div class="section-inner">
     <div class="section-tag">Compatibilidad</div>
     <h2 class="section-title">Disponible en tus dispositivos</h2>
-    <p class="section-sub">Una sola app, múltiples plataformas. Tu cliente disfruta donde quiera.</p>
-    <div class="platforms-carousel">
+    <p class="section-sub">Una sola plataforma, múltiples dispositivos. Tu cliente disfruta donde quiera.</p>
+    <div class="platforms-grid">
+
+      <!-- Android TV — disponible -->
       <div class="platform-card">
-        <span class="platform-icon">📺</span>
-        <div class="platform-name">Android TV Box</div>
-        <span class="platform-badge">DISPONIBLE</span>
+        <div class="platform-svg">
+          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="15" width="50" height="30" rx="5" stroke="#3DDC84" stroke-width="2"/>
+            <circle cx="20" cy="28" r="3.5" fill="#3DDC84"/>
+            <circle cx="36" cy="28" r="3.5" fill="#3DDC84"/>
+            <path d="M17 36 Q28 43 39 36" stroke="#3DDC84" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+            <line x1="23" y1="15" x2="20" y2="8" stroke="#3DDC84" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="20" cy="7" r="1.5" fill="#3DDC84"/>
+            <line x1="33" y1="15" x2="36" y2="8" stroke="#3DDC84" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="36" cy="7" r="1.5" fill="#3DDC84"/>
+            <rect x="26" y="45" width="4" height="6" fill="#3DDC84" opacity="0.45"/>
+            <rect x="20" y="51" width="16" height="2.5" rx="1.25" fill="#3DDC84" opacity="0.45"/>
+          </svg>
+        </div>
+        <div class="platform-name">Android TV</div>
+        <span class="platform-badge available">DISPONIBLE</span>
       </div>
+
+      <!-- Android Móvil — disponible -->
       <div class="platform-card">
-        <span class="platform-icon">🖥️</span>
-        <div class="platform-name">Samsung Tizen</div>
-        <span class="platform-badge">DISPONIBLE</span>
+        <div class="platform-svg">
+          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="14" y="8" width="28" height="42" rx="5" stroke="#3DDC84" stroke-width="2"/>
+            <circle cx="22" cy="22" r="3" fill="#3DDC84"/>
+            <circle cx="34" cy="22" r="3" fill="#3DDC84"/>
+            <path d="M19 30 Q28 37 37 30" stroke="#3DDC84" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+            <line x1="25" y1="8" x2="23" y2="3" stroke="#3DDC84" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="23" cy="2" r="1.5" fill="#3DDC84"/>
+            <line x1="31" y1="8" x2="33" y2="3" stroke="#3DDC84" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="33" cy="2" r="1.5" fill="#3DDC84"/>
+            <rect x="24" y="42" width="8" height="4" rx="2" fill="#3DDC84" opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="platform-name">Android Móvil</div>
+        <span class="platform-badge available">DISPONIBLE</span>
       </div>
+
+      <!-- Samsung Tizen — próximamente -->
       <div class="platform-card coming">
-        <span class="platform-icon">📺</span>
+        <div class="platform-svg">
+          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="28" cy="28" r="25" stroke="#1428A0" stroke-width="2"/>
+            <path d="M18 20 C18 20 18 13 26 13 C34 13 34 20 34 20 C34 26 28 27 28 27 C22 28 18 32 18 38 C18 44 24 44 28 44 C32 44 36 42 38 38" stroke="#1428A0" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="platform-name">Samsung Tizen</div>
+        <span class="platform-badge">PRÓXIMAMENTE</span>
+      </div>
+
+      <!-- LG webOS — próximamente -->
+      <div class="platform-card coming">
+        <div class="platform-svg">
+          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="28" cy="28" r="25" stroke="#A50034" stroke-width="2"/>
+            <path d="M14 18 L14 38 L26 38" stroke="#A50034" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M31 18 L31 28 L42 28" stroke="#A50034" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+            <circle cx="37" cy="34" r="5" stroke="#A50034" stroke-width="2.2"/>
+          </svg>
+        </div>
         <div class="platform-name">LG webOS</div>
         <span class="platform-badge">PRÓXIMAMENTE</span>
       </div>
+
+      <!-- Apple iOS — próximamente -->
       <div class="platform-card coming">
-        <span class="platform-icon">📡</span>
+        <div class="platform-svg">
+          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M28 14 C28 14 22 10 16 14 C10 18 10 28 12 34 C14 40 18 46 22 46 C24 46 26 44 28 44 C30 44 32 46 34 46 C38 46 42 40 44 34 C46 28 46 18 40 14 C34 10 28 14 28 14 Z" stroke="#A8B8C8" stroke-width="2" fill="none"/>
+            <path d="M28 14 C30 8 36 6 38 10" stroke="#A8B8C8" stroke-width="2" stroke-linecap="round" fill="none"/>
+          </svg>
+        </div>
+        <div class="platform-name">Apple iOS</div>
+        <span class="platform-badge">PRÓXIMAMENTE</span>
+      </div>
+
+      <!-- Roku — próximamente -->
+      <div class="platform-card coming">
+        <div class="platform-svg">
+          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="18" y="4" width="20" height="48" rx="10" stroke="#6F1AB6" stroke-width="2"/>
+            <circle cx="28" cy="16" r="5" stroke="#6F1AB6" stroke-width="2"/>
+            <circle cx="21" cy="28" r="2.5" fill="#6F1AB6" opacity="0.65"/>
+            <circle cx="35" cy="28" r="2.5" fill="#6F1AB6" opacity="0.65"/>
+            <circle cx="28" cy="36" r="2.5" fill="#6F1AB6" opacity="0.65"/>
+            <circle cx="28" cy="44" r="2.5" fill="#6F1AB6" opacity="0.65"/>
+          </svg>
+        </div>
         <div class="platform-name">Roku</div>
         <span class="platform-badge">PRÓXIMAMENTE</span>
       </div>
+
+      <!-- Amazon Fire TV — próximamente -->
       <div class="platform-card coming">
-        <span class="platform-icon">📱</span>
-        <div class="platform-name">iOS</div>
+        <div class="platform-svg">
+          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M28 6 C24 12 20 16 20 24 C16 20 16 12 20 8 C14 14 12 24 16 32 C12 28 10 20 14 12 C10 20 10 30 14 38 C16 44 20 48 28 50 C36 48 40 44 42 38 C46 30 46 20 42 12 C46 20 46 28 42 32 C46 24 44 14 38 8 C42 12 42 20 38 24 C38 16 34 12 28 6 Z" stroke="#FF9900" stroke-width="1.8" fill="none"/>
+            <path d="M22 36 Q28 42 34 36" stroke="#FF9900" stroke-width="2" stroke-linecap="round" fill="none"/>
+          </svg>
+        </div>
+        <div class="platform-name">Amazon Fire TV</div>
         <span class="platform-badge">PRÓXIMAMENTE</span>
       </div>
+
+      <!-- Tablet — próximamente -->
+      <div class="platform-card coming">
+        <div class="platform-svg">
+          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="10" width="48" height="36" rx="5" stroke="#8B9CB6" stroke-width="2"/>
+            <rect x="8" y="14" width="40" height="28" rx="3" stroke="#8B9CB6" stroke-width="1.5"/>
+            <circle cx="50" cy="28" r="1.8" fill="#8B9CB6"/>
+          </svg>
+        </div>
+        <div class="platform-name">Tablet</div>
+        <span class="platform-badge">PRÓXIMAMENTE</span>
+      </div>
+
     </div>
   </div>
 </section>
 
-<section class="section how-bg" id="como-funciona">
+<section class="section how-bg fade-up" id="como-funciona">
   <div class="section-inner">
     <div class="section-tag">Proceso simple</div>
     <h2 class="section-title">¿Cómo funciona?</h2>
-    <p class="section-sub" style="text-align:center">En 3 pasos tienes tu negocio IPTV activo y generando ingresos.</p>
+    <p class="section-sub" style="text-align:center">En 3 pasos tienes tu negocio de streaming activo y generando ingresos.</p>
     <div class="how-grid">
       <div class="how-step">
         <div class="how-number">01</div>
@@ -333,7 +462,7 @@ footer{background:var(--bg);border-top:1px solid rgba(255,255,255,0.05);padding:
   </div>
 </section>
 
-<section class="section" id="planes">
+<section class="section fade-up" id="planes">
   <div class="section-inner">
     <div class="section-tag">Planes mensuales</div>
     <h2 class="section-title">Empieza desde $10.000/mes</h2>
@@ -429,11 +558,11 @@ footer{background:var(--bg);border-top:1px solid rgba(255,255,255,0.05);padding:
   </div>
 </section>
 
-<section class="section partners-bg" id="colaboradores">
+<section class="section partners-bg fade-up" id="colaboradores">
   <div class="section-inner">
     <div class="section-tag">Únete</div>
     <h2 class="section-title">¿Quieres ser Colaborador?</h2>
-    <p class="section-sub">Distribuye S.Tv.Fast y gana comisión por cada revendedor que incorpores. Sin inversión inicial.</p>
+    <p class="section-sub">Distribuye Stfast Stream y gana comisión por cada revendedor que incorpores. Sin inversión inicial.</p>
     <div class="partners-inner">
       <div>
         <div class="partners-perks">
@@ -448,7 +577,7 @@ footer{background:var(--bg);border-top:1px solid rgba(255,255,255,0.05);padding:
             <span class="partner-perk-icon">🤝</span>
             <div class="partner-perk-text">
               <strong>Sin inversión inicial</strong>
-              <span>No necesitas comprar nada. Solo conectas a quienes quieren vender IPTV.</span>
+              <span>No necesitas comprar nada. Solo conectas a quienes quieren vender streaming.</span>
             </div>
           </div>
           <div class="partner-perk">
@@ -466,7 +595,7 @@ footer{background:var(--bg);border-top:1px solid rgba(255,255,255,0.05);padding:
             </div>
           </div>
         </div>
-        <a href="https://wa.me/569XXXXXXXX?text=Hola%2C%20quiero%20info%20para%20ser%20colaborador%20de%20S.Tv.Fast" target="_blank" class="btn-primary">💬 Ser Colaborador por WhatsApp</a>
+        <a href="https://wa.me/569XXXXXXXX?text=Hola%2C%20quiero%20info%20para%20ser%20colaborador%20de%20Stfast%20Stream" target="_blank" class="btn-primary">💬 Ser Colaborador por WhatsApp</a>
       </div>
       <div class="partners-visual">
         <div class="partners-visual-title">Niveles de Colaborador</div>
@@ -489,7 +618,7 @@ footer{background:var(--bg);border-top:1px solid rgba(255,255,255,0.05);padding:
   </div>
 </section>
 
-<section class="section" id="faq">
+<section class="section fade-up" id="faq">
   <div class="section-inner" style="text-align:center">
     <div class="section-tag">FAQ</div>
     <h2 class="section-title">Preguntas frecuentes</h2>
@@ -513,7 +642,7 @@ footer{background:var(--bg);border-top:1px solid rgba(255,255,255,0.05);padding:
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">¿Cómo se muestra mi logo en la app? <span class="faq-chevron">▼</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Subes tu logo desde el panel y aparece automáticamente en la pantalla de bienvenida para todos tus clientes. Tu marca al frente, sin mencionar S.Tv.Fast.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Subes tu logo desde el panel y aparece automáticamente en la pantalla de bienvenida para todos tus clientes. Tu marca al frente, sin mencionar Stfast Stream.</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">¿En qué dispositivos funciona la app? <span class="faq-chevron">▼</span></button>
@@ -531,12 +660,12 @@ footer{background:var(--bg);border-top:1px solid rgba(255,255,255,0.05);padding:
   </div>
 </section>
 
-<section class="cta-section" id="contacto">
-  <h2 class="cta-title">¿Listo para ser<br>revendedor <span>S.Tv.Fast</span>?</h2>
-  <p class="cta-sub">Contáctanos hoy y empieza a generar ingresos con tu propia plataforma IPTV.</p>
+<section class="cta-section fade-up" id="contacto">
+  <h2 class="cta-title">¿Listo para ser<br>revendedor <span>Stfast Stream</span>?</h2>
+  <p class="cta-sub">Contáctanos hoy y empieza a generar ingresos con tu propia plataforma de streaming.</p>
   <div class="hero-btns">
     <a href="https://wa.me/569XXXXXXXX" target="_blank" class="btn-primary">💬 Escribir por WhatsApp</a>
-    <button class="btn-secondary" onclick="downloadPDF()">⬇ Descargar info PDF</button>
+    <a href="#planes" class="btn-secondary">▶ Ver planes</a>
   </div>
 </section>
 
@@ -559,9 +688,53 @@ function toggleFaq(btn){
     }
   }catch(e){}
 })();
+
+// ── Counter animation ──
+function animateCounter(el){
+  const target=parseInt(el.dataset.target,10);
+  const dur=1800;
+  const start=performance.now();
+  (function step(now){
+    const p=Math.min((now-start)/dur,1);
+    const ease=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;
+    el.textContent=Math.floor(ease*target);
+    if(p<1) requestAnimationFrame(step);
+    else el.textContent=target;
+  })(start);
+}
+
+// ── Scroll fade-up + counter trigger ──
+const fadeObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      e.target.querySelectorAll('.stat-number[data-target]').forEach(animateCounter);
+      fadeObs.unobserve(e.target);
+    }
+  });
+},{threshold:.12});
+document.querySelectorAll('.fade-up').forEach(el=>fadeObs.observe(el));
+
+// ── Parallax hero ──
+(function(){
+  const glow=document.querySelector('.hero-glow');
+  const grid=document.querySelector('.hero-grid');
+  let ticking=false;
+  window.addEventListener('scroll',()=>{
+    if(!ticking){
+      requestAnimationFrame(()=>{
+        const y=window.scrollY;
+        if(glow) glow.style.transform=`translate(-50%,calc(-50% + ${y*0.18}px))`;
+        if(grid) grid.style.transform=`translateY(${y*0.08}px)`;
+        ticking=false;
+      });
+      ticking=true;
+    }
+  });
+})();
 </script>
 
-<footer>S.Tv.Fast · Plataforma IPTV para revendedores · Chile</footer>
+<footer>Stfast Stream · Plataforma de Streaming para revendedores · Chile</footer>
 
 <script>
 const SLIDES = [
@@ -626,18 +799,6 @@ const SLIDES = [
     desc: "Información en tiempo real de calidad, resolución y tipo de stream. El usuario siempre sabe lo que está recibiendo."
   }
 ];
-const PDF_B64 = "JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUiAvRjMgNCAwIFIKPj4KZW5kb2JqCjIgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YxIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKMyAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYS1Cb2xkIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nIC9OYW1lIC9GMiAvU3VidHlwZSAvVHlwZTEgL1R5cGUgL0ZvbnQKPj4KZW5kb2JqCjQgMCBvYmoKPDwKL0Jhc2VGb250IC9aYXBmRGluZ2JhdHMgL05hbWUgL0YzIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKNSAwIG9iago8PAovQ29udGVudHMgMTAgMCBSIC9NZWRpYUJveCBbIDAgMCA1OTUuMjc1NiA4NDEuODg5OCBdIC9QYXJlbnQgOSAwIFIgL1Jlc291cmNlcyA8PAovRm9udCAxIDAgUiAvUHJvY1NldCBbIC9QREYgL1RleHQgL0ltYWdlQiAvSW1hZ2VDIC9JbWFnZUkgXQo+PiAvUm90YXRlIDAgL1RyYW5zIDw8Cgo+PiAKICAvVHlwZSAvUGFnZQo+PgplbmRvYmoKNiAwIG9iago8PAovQ29udGVudHMgMTEgMCBSIC9NZWRpYUJveCBbIDAgMCA1OTUuMjc1NiA4NDEuODg5OCBdIC9QYXJlbnQgOSAwIFIgL1Jlc291cmNlcyA8PAovRm9udCAxIDAgUiAvUHJvY1NldCBbIC9QREYgL1RleHQgL0ltYWdlQiAvSW1hZ2VDIC9JbWFnZUkgXQo+PiAvUm90YXRlIDAgL1RyYW5zIDw8Cgo+PiAKICAvVHlwZSAvUGFnZQo+PgplbmRvYmoKNyAwIG9iago8PAovUGFnZU1vZGUgL1VzZU5vbmUgL1BhZ2VzIDkgMCBSIC9UeXBlIC9DYXRhbG9nCj4+CmVuZG9iago4IDAgb2JqCjw8Ci9BdXRob3IgKFwoYW5vbnltb3VzXCkpIC9DcmVhdGlvbkRhdGUgKEQ6MjAyNjA1MjEyMTI4MDgrMDAnMDAnKSAvQ3JlYXRvciAoXCh1bnNwZWNpZmllZFwpKSAvS2V5d29yZHMgKCkgL01vZERhdGUgKEQ6MjAyNjA1MjEyMTI4MDgrMDAnMDAnKSAvUHJvZHVjZXIgKFJlcG9ydExhYiBQREYgTGlicmFyeSAtIFwob3BlbnNvdXJjZVwpKSAKICAvU3ViamVjdCAoXCh1bnNwZWNpZmllZFwpKSAvVGl0bGUgKFwoYW5vbnltb3VzXCkpIC9UcmFwcGVkIC9GYWxzZQo+PgplbmRvYmoKOSAwIG9iago8PAovQ291bnQgMiAvS2lkcyBbIDUgMCBSIDYgMCBSIF0gL1R5cGUgL1BhZ2VzCj4+CmVuZG9iagoxMCAwIG9iago8PAovRmlsdGVyIFsgL0FTQ0lJODVEZWNvZGUgL0ZsYXRlRGVjb2RlIF0gL0xlbmd0aCAyNTM0Cj4+CnN0cmVhbQpHYXVgVT5CQVEtJnE5U1lmUz1XPi1ab3QlaTpaPm5sUWlTbypwNnVpU04ybE1LUnQxVS4kRU9YQyVDVCUkXilXSE1pLVc7VnJQJFZCRjQlN3BLYFQtSzBTL2hOQWdqUDAmYkpWJVU/ZWklR1lNSS8yLHUkbyZUQktGKD9RKyYnWFMhYTpaNHRfXXRkQEgjby46bTlcai4mVTZLbS9uXFQwS2h1TWQ1PDQiQVJzRSZvKFgucS5gJCNDK283VGVNP0xVO1khZzJeUD1Xb3RIK1s4Q1RiNytMZytANjA0JjZwN14oLSMnQkRfK3RvXDdXbzlIYD0lQTVIdCVnYjlzZjpuY0RHWEFkM2w8N01xTlVINEVRZEkqTWlPIXU+aG4jXUJzSigpLnNZIi9tPk1OcGsvcSIqTFQ5ODYpZUNIKz9ka25UdCFAMlhkS2MubkhzTFZvYXE8SW8qKEFUYmIqdT5Oby1vbEg0dTw0YDY7ZEprc25rImI2UDNAPV4tVl4lcUIyYz9wUk1yTVssbiIiQEwkU2BpVCgnM1d1UWA4K3VHZmlzNVlLLUQqIjcxZCtHaEZpb15ZLyI2KF5WK0lUX1k/Nj5KMz8kSGc7PlghSGlxOEEtNTkxTzVTW3VHWCNQQVhJQDdvRFVaLjFlP1N1aG9RYUdOcC8iTy9IX1UkaUY5KEdaUFZtJmNDTkkvMD1XT2lAZWNdLj5yPkM6PCQ/MFZqaEZmQWtWLCQxXmJcUDsnLzdoRSopT1FvY2tXUDI1P3IzKj1PTywwIWFcMlRbJjVzYSUjJj5vaFs4JmFDMU1wcGdoVkxvNUBrbk1XXlBAUjZiUWA8ZmhcUmNjRFJqLUMqSUw3UG9KZWJSVmFeVFIkLHJcQUJJV1xAayhsNU9vbjluLC1TSyJjNlA7bCZwVWE+dGBUaEZHZy1gVm1OVyJTJ2FSKCxPJUBWKilmJy1zRm9qMmpqMFtoMyVHLTYhWUlQTEpcVHFuQ0lrMGAhTVI0JUdkWVs0XWtlXUYjcl4nbkpVTiRDKSk1RlUqSFtHNiRcTEtIKj9zPWNbciZmSzxqTyE5JjgkWjU5dWBxL0Y5WVFaQkI8QS1VdVpmK3I8YERiKHVhQW5cSlFmbkFbdGFFPTh1S207QENpXU1rJDklJipGJVBbRlRHcVQuPSo+bjNCMFd1I15McGA5JFtMby1CXXRbVUdLRWY+aSRmKS9xIlRFZHFNKSJaSSo8aVtsW2dtSjRQVStvdT1DPzEjKSE7YFlLP2FdLDJoQ2FoKmtPW2sxcmxcSEtBIiZbTDFBTTMtKCJwUGVPQmksS3A3YHMwY3EoW0NyXUhdI286JSItZU5eOVhjbzRZQWMlOj87MVddLUxeXkYiJ0svSkFWNVpOQz9wXnFRKyMiIyJGPUw3RCNJSXJBVyxLZmQ7Yl5lSlhWbVlwRV8mdSpvI2U2ZTBGcWNfZihPQVYtbS1jQmNVamYtPG45WDVgW1ZwXGdnY1NoYC0uUURPKCUxUVc5LEFfZTEqQzNKKElWQy44OiNlJFIrUidVXyNALjUqUyEqIy0sUGlvODluJDlhPzxdXXM9NW0lXTZDLk1MSUVgRVUzVE5tZVVDVTItSSJnOTZHKk0tNV1mQXEmYS9EVkghOXImbzk2MyZ0PVl0QFw2UzkrKjdyTEg4R0RBNl1GP14wc0ZNZFg7RzFcRUBwMEVVVCJsaXMvME5vOVMsOTlTTW5AM0o/J3E/KkdoZWVwPVtnR2dCaHJzNmYpdEFUUExybE1pb3BJbl5YUkNZKGRccj44J0g1SiVmZTFxTDtKY15SNihzZj4hLzBPVmIjV2VsPyVFTDxQOExsX0NKXFpiXHNpb0dlaGYuXk08a00zWytLakBHSUtoaklMTml0Z3BXbEFDLUE2PHUrbnAxPG08UTxMPWBAS0hoTDovYFw6TmlTMmtlSm05PGBMPGYwUmkxVyspbm5GODdYMzxeXVdOWz4lO2taY0kmUE9CNG5iWl4takwqSz90Oi5JOTFRclhgPjFATVMqPzpBWE1mRWc/cz9scldtLjlBLj9rJ2FiTyxgXTJnRSItciZSN2VUWTQvMChjLT5la2ZzIVFLMDFLaiRTJj5xb28wVCpQPkwiaTVmXy1bV2xvUTxmVSUsS2pZNWtvLU46b1k2QSRzQSVxY1BsKkg4bVpRLkU/VkdyaEJCLUdlKFopW2taOGJILG00YjchJ3I8QXJDYFZoPyRfa2leY1xSLGQsMmRVZCJ0IVJMZ3VlTSsxOUM6Ui5nWW1LZkxVYV80Njw5NGxzQzVgKUtWbjRGUEduMEQ+N1chT1pLLXNFa15aTCRAaEs3SkknSnQhRlI0W2E6JyMwaihcZzJLZW9OWEQnNTluJihLYTNUSz8tI2lTQl5SZzhFPmFhPHJxbyg+QCJXLz0iNnVaJ0VKaV4xLE5RYVJMMFxhSUVUcV1JOzNrI2NaXzJWdCFjYWhqRS5RRE1jOlF0PnI6TDJ1UEZwNyFtZFRNRl8hS1NnJipeKC4mdTBNImtHUTJjbV9iRlBLcVdJKihZJmFpKUFhSWs+Ly8vY0cmUSldcVxKYk0tPHRZXnA+SkFXQTFlQ2dKXVdWYGddMFcnVixiLylKNFoqJlJpZSo1QUFBOTIkYkQlZCRhR1ZqTXQ7aV80KVtpbUdDNHVNXlckJ21jQ0BITC9hJ0hhQjM1KlBFTHAjJGpHIW5Zayg2JVwrUzVFMFg2V2lSKFhMRiFeRGNNZS1hMjw2MEUlUU1nJnAhPiFeL1hPSE00USIlVyYmPSpWaG8ubWgrZ1gzZ1BpMUBpOjwtPHAkIy5ZcklkOENiclpIU0BnUnBsZjE7IyV0bj5NSVBfPkkzdFIhJHI2WlhzTERuIzdzMWo2TSVlVk9CbENnJlZzN2NNPVR0Y1lWYzJRO2o4KjkzcUtEM19GKy4lMXImKVBtbzgqOChiX3FZTF0qZjZxbilsMnEscF0mMVg+NGNNK11ZNDZFJ3AkQHE0KnFrKSJGRENgMykuNEJtQ2d0JW48dDlYbXAjPGhpLCgoQjBDWkYkSTIoUFVWOUJETEopS2RuPk1uSyI7LiRRam9BLjRQRDFmbnQ2az4jKU9sI2kiVUNOXVhvUyRaKDg8LCsubDNYJUQtSyhtT0xyaWVvNUtcLzZlO1ctTmdOTzw6QC8yTyMsSiUuaEZQRUIiSUY+MFZeUkxgbiFzMmtdaz5RSEpSO2NfLj5aZzMxbE1cIT4mX0k8IjlYXGBpOWEoIWc2L2dtTnBHYW1UZ3MtOCtxJl9CTCRhSGkuIiIscVMiSzE/dShwUSlDRlBRJFBGPkVhPC8nXElSXy9oZSVQPTVUUDduLDc+J2ZvKjViW2JcYCVtO2heWy9+PmVuZHN0cmVhbQplbmRvYmoKMTEgMCBvYmoKPDwKL0ZpbHRlciBbIC9BU0NJSTg1RGVjb2RlIC9GbGF0ZURlY29kZSBdIC9MZW5ndGggODg0Cj4+CnN0cmVhbQpHYXRuJDkyRjstJkJGODgnUWBKaDtKIlA3cFJXaUFKW1JsViciQC1MKEgzMEw2dDBYMiY6Rj43aGZiM1ZXXGRiWD8xMG4pcXRKQVFKXl09bElELGpaJ1lxTmshWF00OSE+U05FU0E/VGpnXmI2Zz9EJT49W0lSUSY2XVUiR1VjM3AraU5CaytfSjAwSitga3BqODBiWSQrJ2FzYjxiXHBMYFhAaThdT0tzaS47OWo4TVVnY1FRXUxGYTo0bVJlYmI6dXEmcjpUcU9WQFAyN28iWldDKi48JXFuMEtIaU9fayFFb0k2YlJGTDZjNjYrQkQ7dCYiXmRILSwoI2RBP2M3VWgkWThKKShKW0xvbURoLS4hcTRoLSpXbCpwMXIhZ0QlK2RKPD1ycGdXZThKbS9OU0BHJiZhXVUoY21LZWdrJmdBYUFbKHQxaTMqMDROVUdeOUJILkUyK0xVUGpsI0RuKlZrNWhiTFczbUM1YDNeMCM9NmRtYSElWUo6YSN1cmRvbzowZ0cmJk9fayhxMEsuWDUrdTRKVixiVDxQcE9kVVxRKVwtKjEzI2pyS1BUZmJQbD0iZVxqZT9rPXAnKUo1KnVrbVxLS0ZAaCxDbmZjdTUqK3ImZCVNLjVbUW5JQSxCIzdYXSowL0BDam5MQ0BNOUY8PStjNFZtPlhgaW9qKTAjPShZZSssPkRGPVsjWjVMYjRBNkFZZFB0Ql8+NnIhbHMpdTFvOzNjRlxhWEtBdVdsb25GZWc4VC8/czw1bmM/JWloYlpoXT5gRl1zQTdUalZ0N19qXScjQzFWQlg4TEk+M2ZaJXQnMmFQSy9DOkonJjtsZjhrNltWTFExNEBqUDlUOlBCSXNzI2QxRWRqKWNzNiMoWGhCPW9gXStmMHRzXjFZKFREaSIpZEU/X21XamxbUjpaOTtiJFBeNnRYPGlaVU08XytVUVUvWjcpUWBxJiQ2OlU4cDgtLjE3M00jcCM3azokcVRPMmYjO2xQYko/WmxiaEVyZUlKaDViWklkRysydDtSOUljUjlfXEYzRkI4RGtxLCdqUlM9OFdLTTdDSzktbGoqQlFIMidcP2luIVxwX1MqZj4sVnIzYUlcVl9scUFdMWwlPVFsdHJGUDw4Q0QpInNGOUQ0TnJGQj8iWy5ITkFNQjJ1OiFQMC9hMiN+PmVuZHN0cmVhbQplbmRvYmoKeHJlZgowIDEyCjAwMDAwMDAwMDAgNjU1MzUgZiAKMDAwMDAwMDA2MSAwMDAwMCBuIAowMDAwMDAwMTEyIDAwMDAwIG4gCjAwMDAwMDAyMTkgMDAwMDAgbiAKMDAwMDAwMDMzMSAwMDAwMCBuIAowMDAwMDAwNDE0IDAwMDAwIG4gCjAwMDAwMDA2MTggMDAwMDAgbiAKMDAwMDAwMDgyMiAwMDAwMCBuIAowMDAwMDAwODkwIDAwMDAwIG4gCjAwMDAwMDExNzAgMDAwMDAgbiAKMDAwMDAwMTIzNSAwMDAwMCBuIAowMDAwMDAzODYxIDAwMDAwIG4gCnRyYWlsZXIKPDwKL0lEIApbPGY1OTE5MDRkZjU1ZjgyNWJiNzlhMjc4ZTZiMGQzOGEyPjxmNTkxOTA0ZGY1NWY4MjViYjc5YTI3OGU2YjBkMzhhMj5dCiUgUmVwb3J0TGFiIGdlbmVyYXRlZCBQREYgZG9jdW1lbnQgLS0gZGlnZXN0IChvcGVuc291cmNlKQoKL0luZm8gOCAwIFIKL1Jvb3QgNyAwIFIKL1NpemUgMTIKPj4Kc3RhcnR4cmVmCjQ4MzYKJSVFT0YK";
-
-function downloadPDF() {
-  const bin = atob(PDF_B64);
-  const bytes = new Uint8Array(bin.length);
-  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
-  const blob = new Blob([bytes], {type:'application/pdf'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'StvFast_Planes.pdf';
-  a.click();
-}
 
 let current = 0;
 const track = document.getElementById('sliderTrack');
