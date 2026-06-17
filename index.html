@@ -202,40 +202,8 @@ footer{background:var(--bg);border-top:1px solid rgba(255,255,255,0.05);padding:
   .platforms-grid{grid-template-columns:repeat(auto-fit,minmax(100px,1fr))}
 }
 
-/* ─── ACTIVACIÓN ─── */
-#activacion{background:var(--bg2)}
-.act-card{background:var(--bg3);border:1px solid rgba(191,0,255,.18);border-radius:20px;padding:48px 40px;max-width:560px;margin:0 auto}
-.act-steps{display:flex;gap:16px;justify-content:center;margin-bottom:36px}
-.act-step{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray);font-weight:600}
-.act-step-num{width:28px;height:28px;border-radius:50%;border:2px solid var(--gray2);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;transition:.3s}
-.act-step.active .act-step-num{border-color:var(--purple);background:var(--purple);color:#fff}
-.act-step.active{color:var(--white)}
-.act-step-sep{flex:1;height:2px;background:var(--gray2);max-width:48px;transition:.3s}
-.act-step-sep.done{background:var(--purple)}
-.act-label{font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px}
-.act-sub{font-size:14px;color:var(--gray);margin-bottom:24px}
-.act-field{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--gray2);border-radius:10px;padding:14px 16px;color:var(--white);font-size:15px;font-family:inherit;outline:none;transition:.25s}
-.act-field:focus{border-color:var(--purple);box-shadow:0 0 0 3px rgba(191,0,255,.12)}
-.act-btn{margin-top:16px;width:100%;padding:15px;background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;transition:.25s;letter-spacing:.5px}
-.act-btn:hover{opacity:.88;transform:translateY(-1px)}
-.act-btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
-.act-error{margin-top:12px;color:#ff4d6d;font-size:13px;text-align:center;min-height:18px}
-.act-tabs{display:flex;gap:0;border-radius:10px;overflow:hidden;border:1px solid var(--gray2);margin-bottom:20px}
-.act-tab{flex:1;padding:11px;background:transparent;border:none;color:var(--gray);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:.25s}
-.act-tab.active{background:var(--purple);color:#fff}
-.act-fields-group{display:flex;flex-direction:column;gap:12px}
-.act-field-label{font-size:12px;color:var(--gray);margin-bottom:4px;display:block}
-.act-success{text-align:center;padding:16px 0}
-.act-success-icon{font-size:52px;margin-bottom:12px}
-.act-success-title{font-size:22px;font-weight:800;color:var(--white);margin-bottom:8px}
-.act-success-desc{font-size:14px;color:var(--gray)}
-.act-panel{display:none}
-.act-panel.visible{display:block}
-@media(max-width:600px){.act-card{padding:32px 20px}}
 </style>
 </head>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-functions-compat.js"></script>
 <body>
 
 <div class="disclaimer-overlay" id="disclaimerOverlay">
@@ -262,7 +230,7 @@ footer{background:var(--bg);border-top:1px solid rgba(255,255,255,0.05);padding:
       <li><a href="#planes">Planes</a></li>
       <li><a href="#colaboradores">Colaboradores</a></li>
       <li><a href="#faq">FAQ</a></li>
-      <li><a href="#activacion">Activación</a></li>
+      <li><a href="/activar">Activación</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
     <a href="#planes" class="nav-cta">Ver planes</a>
@@ -696,87 +664,6 @@ footer{background:var(--bg);border-top:1px solid rgba(255,255,255,0.05);padding:
   </div>
 </section>
 
-<section class="section fade-up" id="activacion">
-  <div class="section-inner" style="text-align:center">
-    <div class="section-tag">ACTIVACIÓN</div>
-    <h2 class="section-title">Activar tu dispositivo</h2>
-    <p class="section-sub">Ingresa el código que muestra tu TV y configura tu fuente de contenido en segundos.</p>
-
-    <div class="act-card">
-      <!-- Indicadores de paso -->
-      <div class="act-steps">
-        <div class="act-step active" id="actStep1">
-          <div class="act-step-num">1</div>
-          <span>Verificar código</span>
-        </div>
-        <div class="act-step-sep" id="actSep"></div>
-        <div class="act-step" id="actStep2">
-          <div class="act-step-num">2</div>
-          <span>Configurar fuente</span>
-        </div>
-      </div>
-
-      <!-- Panel 1: Ingresar código -->
-      <div class="act-panel visible" id="actPanel1">
-        <div class="act-label">Código del dispositivo</div>
-        <div class="act-sub">Ingresa el código de activación que aparece en la pantalla de tu TV.</div>
-        <input class="act-field" id="actDeviceId" type="text" placeholder="Ej: ABC123" maxlength="20" autocomplete="off" oninput="this.value=this.value.toUpperCase()">
-        <button class="act-btn" id="actVerifyBtn" onclick="verifyDevice()">Verificar código</button>
-        <div class="act-error" id="actError1"></div>
-      </div>
-
-      <!-- Panel 2: Configurar fuente -->
-      <div class="act-panel" id="actPanel2">
-        <div class="act-label">Configurar fuente de contenido</div>
-        <div class="act-sub">Elige el tipo de conexión e ingresa los datos de tu lista.</div>
-
-        <input class="act-field" id="actNombre" type="text" placeholder="Nombre de la lista (ej: Mi Lista)" style="margin-bottom:20px">
-
-        <div class="act-tabs">
-          <button class="act-tab active" id="tabM3u" onclick="switchTab('m3u')">M3U</button>
-          <button class="act-tab" id="tabXtream" onclick="switchTab('xtream')">Xtream Codes</button>
-        </div>
-
-        <!-- Tab M3U -->
-        <div id="panelM3u" class="act-fields-group">
-          <div>
-            <label class="act-field-label">URL de la lista M3U</label>
-            <input class="act-field" id="actM3uUrl" type="url" placeholder="http://...">
-          </div>
-        </div>
-
-        <!-- Tab Xtream -->
-        <div id="panelXtream" class="act-fields-group" style="display:none">
-          <div>
-            <label class="act-field-label">URL del servidor</label>
-            <input class="act-field" id="actXtreamUrl" type="url" placeholder="http://...">
-          </div>
-          <div>
-            <label class="act-field-label">Usuario</label>
-            <input class="act-field" id="actXtreamUser" type="text" placeholder="usuario">
-          </div>
-          <div>
-            <label class="act-field-label">Contraseña</label>
-            <input class="act-field" id="actXtreamPass" type="password" placeholder="contraseña">
-          </div>
-        </div>
-
-        <button class="act-btn" id="actSaveBtn" onclick="activateDevice()" style="margin-top:24px">Activar</button>
-        <div class="act-error" id="actError2"></div>
-      </div>
-
-      <!-- Panel 3: Éxito -->
-      <div class="act-panel" id="actPanel3">
-        <div class="act-success">
-          <div class="act-success-icon">✅</div>
-          <div class="act-success-title">¡Dispositivo activado!</div>
-          <div class="act-success-desc">Tu contenido cargará en el TV automáticamente.<br>Si no carga de inmediato, reinicia la app en tu TV.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="cta-section fade-up" id="contacto">
   <h2 class="cta-title">¿Listo para ser<br>revendedor <span>Stfast Stream</span>?</h2>
   <p class="cta-sub">Contáctanos hoy y empieza a generar ingresos con tu propia plataforma de streaming.</p>
@@ -916,96 +803,6 @@ document.querySelectorAll('.fade-up').forEach(el=>fadeObs.observe(el));
   });
 })();
 
-// ── Firebase + Activación ──
-(function(){
-  const cfg={
-    apiKey:"AIzaSyCGwKwuuIPLrJfJ8RN5JkxBCZm-3tu0NxU",
-    authDomain:"stvfast-panel.firebaseapp.com",
-    projectId:"stvfast-panel",
-    storageBucket:"stvfast-panel.firebasestorage.app",
-    messagingSenderId:"788765645032",
-    appId:"1:788765645032:web:b83cee1d1bcd00455ad15d"
-  };
-  if(!firebase.apps.length) firebase.initializeApp(cfg);
-  window._stfFns=firebase.app().functions('southamerica-east1');
-})();
-
-let _actDeviceId='';
-let _actTab='m3u';
-
-function verifyDevice(){
-  const btn=document.getElementById('actVerifyBtn');
-  const errEl=document.getElementById('actError1');
-  const deviceId=document.getElementById('actDeviceId').value.trim();
-  errEl.textContent='';
-  if(!deviceId){errEl.textContent='Por favor ingresa el código.';return;}
-  btn.disabled=true;
-  btn.textContent='Verificando...';
-  const fn=window._stfFns.httpsCallable('checkDeviceActivation');
-  fn({deviceId}).then(res=>{
-    if(res.data && res.data.activated!==undefined){
-      _actDeviceId=deviceId;
-      document.getElementById('actPanel1').classList.remove('visible');
-      document.getElementById('actPanel2').classList.add('visible');
-      document.getElementById('actStep1').classList.remove('active');
-      document.getElementById('actStep2').classList.add('active');
-      document.getElementById('actSep').classList.add('done');
-    } else {
-      errEl.textContent='Código no encontrado. Verifica e intenta de nuevo.';
-    }
-  }).catch(err=>{
-    if(err.code==='functions/not-found'){
-      errEl.textContent='Código no encontrado. Verifica e intenta de nuevo.';
-    } else {
-      errEl.textContent='Error al verificar. Intenta de nuevo.';
-    }
-  }).finally(()=>{
-    btn.disabled=false;
-    btn.textContent='Verificar código';
-  });
-}
-
-function switchTab(tab){
-  _actTab=tab;
-  document.getElementById('panelM3u').style.display=tab==='m3u'?'flex':'none';
-  document.getElementById('panelXtream').style.display=tab==='xtream'?'flex':'none';
-  document.getElementById('tabM3u').className='act-tab'+(tab==='m3u'?' active':'');
-  document.getElementById('tabXtream').className='act-tab'+(tab==='xtream'?' active':'');
-}
-
-function activateDevice(){
-  const btn=document.getElementById('actSaveBtn');
-  const errEl=document.getElementById('actError2');
-  errEl.textContent='';
-  const nombre=document.getElementById('actNombre').value.trim();
-  if(!nombre){errEl.textContent='Por favor ingresa el nombre de la lista.';return;}
-  let payload={deviceId:_actDeviceId,tipo:_actTab,nombre};
-  if(_actTab==='m3u'){
-    const m3uUrl=document.getElementById('actM3uUrl').value.trim();
-    if(!m3uUrl){errEl.textContent='Por favor ingresa la URL M3U.';return;}
-    payload.m3uUrl=m3uUrl;
-  } else {
-    const xtreamUrl=document.getElementById('actXtreamUrl').value.trim();
-    const xtreamUser=document.getElementById('actXtreamUser').value.trim();
-    const xtreamPass=document.getElementById('actXtreamPass').value.trim();
-    if(!xtreamUrl||!xtreamUser||!xtreamPass){errEl.textContent='Completa todos los campos Xtream.';return;}
-    payload.xtreamUrl=xtreamUrl;
-    payload.xtreamUser=xtreamUser;
-    payload.xtreamPass=xtreamPass;
-  }
-  btn.disabled=true;
-  btn.textContent='Activando...';
-  const fn=window._stfFns.httpsCallable('saveDeviceSource');
-  fn(payload).then(()=>{
-    document.getElementById('actPanel2').classList.remove('visible');
-    document.getElementById('actPanel3').classList.add('visible');
-  }).catch(()=>{
-    errEl.textContent='Error al guardar. Intenta de nuevo.';
-  }).finally(()=>{
-    btn.disabled=false;
-    btn.textContent='Activar';
-  });
-}
 </script>
 
 <footer>Stfast Stream · Plataforma de Streaming para revendedores · Chile</footer>
