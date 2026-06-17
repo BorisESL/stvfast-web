@@ -27,8 +27,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,9,15,0.72)
 .nav-cta:hover{box-shadow:0 0 32px rgba(191,0,255,0.65);transform:translateY(-1px)}
 
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 5% 60px;position:relative;overflow:hidden}
-.hero-glow{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(191,0,255,0.1) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(191,0,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(191,0,255,0.04) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+#neuralCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.hero-glow{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(191,0,255,0.1) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:1}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(191,0,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(191,0,255,0.04) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:1}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(191,0,255,0.1);border:1px solid rgba(191,0,255,0.3);border-radius:100px;padding:6px 18px;font-size:12px;font-weight:500;color:rgba(255,255,255,0.7);letter-spacing:1px;text-transform:uppercase;margin-bottom:28px}
 .hero-badge-dot{width:6px;height:6px;background:#3DD68C;border-radius:50%;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
@@ -235,6 +236,7 @@ footer{background:var(--bg);border-top:1px solid rgba(255,255,255,0.05);padding:
 </nav>
 
 <section class="hero">
+  <canvas id="neuralCanvas"></canvas>
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
   <div class="hero-badge"><span class="hero-badge-dot"></span>Plataforma de streaming profesional para revendedores</div>
@@ -670,6 +672,72 @@ footer{background:var(--bg);border-top:1px solid rgba(255,255,255,0.05);padding:
 </section>
 
 <script>
+// ── Neural network canvas ──
+(function(){
+  const canvas=document.getElementById('neuralCanvas');
+  if(!canvas) return;
+  const ctx=canvas.getContext('2d');
+  const C='191,0,255';
+  const MAX_D=155;
+  const N=75;
+  let W,H,pts,raf;
+
+  function resize(){
+    W=canvas.width=canvas.parentElement.offsetWidth;
+    H=canvas.height=canvas.parentElement.offsetHeight;
+  }
+
+  function init(){
+    pts=Array.from({length:N},()=>({
+      x:Math.random()*W,
+      y:Math.random()*H,
+      vx:(Math.random()-.5)*.42,
+      vy:(Math.random()-.5)*.42,
+      r:Math.random()*1.4+.8,
+    }));
+  }
+
+  function frame(){
+    ctx.clearRect(0,0,W,H);
+    for(let i=0;i<N;i++){
+      const p=pts[i];
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0||p.x>W) p.vx*=-1;
+      if(p.y<0||p.y>H) p.vy*=-1;
+      // líneas hacia vecinos cercanos
+      for(let j=i+1;j<N;j++){
+        const q=pts[j];
+        const dx=p.x-q.x, dy=p.y-q.y;
+        const d=Math.sqrt(dx*dx+dy*dy);
+        if(d<MAX_D){
+          ctx.beginPath();
+          ctx.strokeStyle=`rgba(${C},${(1-d/MAX_D)*.16})`;
+          ctx.lineWidth=.8;
+          ctx.moveTo(p.x,p.y);
+          ctx.lineTo(q.x,q.y);
+          ctx.stroke();
+        }
+      }
+      // punto
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,6.2832);
+      ctx.fillStyle=`rgba(${C},.5)`;
+      ctx.fill();
+    }
+    raf=requestAnimationFrame(frame);
+  }
+
+  function start(){ resize(); init(); cancelAnimationFrame(raf); frame(); }
+
+  window.addEventListener('resize',start);
+  // Esperar a que el hero tenga altura real
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',start);
+  } else {
+    start();
+  }
+})();
+
 function acceptDisclaimer(){
   document.getElementById('disclaimerOverlay').style.display='none';
   try{ localStorage.setItem('stvfast_disclaimer','1'); }catch(e){}
