@@ -16,14 +16,13 @@
 
 .devices-grid {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
   gap: 16px;
 }
 
 .device-card {
   background: #111827;
-  border: 1px solid #1f2937;
   border-radius: 14px;
   width: 130px;
   height: 120px;
@@ -31,24 +30,16 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  transition: border-color 0.2s, transform 0.2s;
-}
-
-.device-card:hover {
-  transform: translateY(-3px);
+  gap: 6px;
+  flex-shrink: 0;
 }
 
 .device-card.available {
-  border-color: #16a34a;
+  border: 2px solid #16a34a;
 }
 
-.device-card.available:hover {
-  border-color: #22c55e;
-}
-
-.device-card.coming:hover {
-  border-color: #374151;
+.device-card.coming {
+  border: 1px solid #374151;
 }
 
 .device-card img,
@@ -57,7 +48,6 @@
   height: 52px;
   object-fit: contain;
   filter: brightness(0) invert(1);
-  opacity: 0.9;
 }
 
 .device-card .device-icon-text {
@@ -70,11 +60,10 @@
   color: #fff;
   letter-spacing: 2px;
   filter: none;
-  opacity: 0.9;
 }
 
 .device-card .device-name {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   color: #fff;
   text-align: center;
@@ -92,11 +81,11 @@
 }
 
 .device-badge.badge-available {
-  color: #22c55e;
-  background: rgba(34, 197, 94, 0.12);
+  color: #16a34a;
+  background: rgba(22, 163, 74, 0.12);
 }
 
 .device-badge.badge-coming {
-  color: #8B9CB6;
-  background: rgba(139, 156, 182, 0.1);
+  color: #6b7280;
+  background: rgba(107, 114, 128, 0.1);
 }
