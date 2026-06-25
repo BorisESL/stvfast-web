@@ -1,4 +1,19 @@
 /* ─── DISPOSITIVOS ─── */
+.devices-group-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 16px;
+  margin-top: 36px;
+  color: #8B9CB6;
+}
+
+.devices-group-label:first-of-type {
+  margin-top: 0;
+}
+
 .devices-grid {
   display: flex;
   flex-wrap: wrap;
@@ -10,32 +25,78 @@
   background: #111827;
   border: 1px solid #1f2937;
   border-radius: 14px;
-  width: 120px;
-  height: 110px;
+  width: 130px;
+  height: 120px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
   transition: border-color 0.2s, transform 0.2s;
 }
 
 .device-card:hover {
-  border-color: rgba(191, 0, 255, 0.35);
   transform: translateY(-3px);
 }
 
-.device-card img {
-  width: 48px;
-  height: 48px;
+.device-card.available {
+  border-color: #16a34a;
+}
+
+.device-card.available:hover {
+  border-color: #22c55e;
+}
+
+.device-card.coming:hover {
+  border-color: #374151;
+}
+
+.device-card img,
+.device-card .device-icon-text {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
   filter: brightness(0) invert(1);
-  opacity: 0.85;
+  opacity: 0.9;
+}
+
+.device-card .device-icon-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Orbitron', monospace;
+  font-size: 14px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 2px;
+  filter: none;
+  opacity: 0.9;
 }
 
 .device-card .device-name {
   font-size: 11px;
   font-weight: 600;
-  color: #8B9CB6;
+  color: #fff;
   text-align: center;
   line-height: 1.2;
+}
+
+.device-badge {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 100px;
+  padding: 2px 8px;
+  display: inline-block;
+}
+
+.device-badge.badge-available {
+  color: #22c55e;
+  background: rgba(34, 197, 94, 0.12);
+}
+
+.device-badge.badge-coming {
+  color: #8B9CB6;
+  background: rgba(139, 156, 182, 0.1);
 }
