@@ -1,0 +1,41 @@
+/* ─── DISPOSITIVOS ─── */
+.devices-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.device-card {
+  background: #111827;
+  border: 1px solid #1f2937;
+  border-radius: 14px;
+  width: 120px;
+  height: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.device-card:hover {
+  border-color: rgba(191, 0, 255, 0.35);
+  transform: translateY(-3px);
+}
+
+.device-card img {
+  width: 48px;
+  height: 48px;
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+}
+
+.device-card .device-name {
+  font-size: 11px;
+  font-weight: 600;
+  color: #8B9CB6;
+  text-align: center;
+  line-height: 1.2;
+}

@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Stfast Stream — Plataforma de Streaming para Revendedores</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -130,17 +131,6 @@ footer{background:var(--bg);border-top:1px solid rgba(255,255,255,0.05);padding:
 
 /* ─── PLATAFORMAS ─── */
 .platforms-section{background:var(--bg2)}
-.platforms-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:14px}
-.platform-card{background:var(--bg3);border:1px solid rgba(191,0,255,0.1);border-radius:16px;padding:22px 12px;text-align:center;transition:all .3s}
-.platform-card:hover{border-color:rgba(191,0,255,0.4);transform:translateY(-5px);box-shadow:0 10px 28px rgba(191,0,255,0.1)}
-.platform-card.coming{opacity:.55}
-.platform-card.coming:hover{opacity:.75;transform:translateY(-3px)}
-.platform-svg{width:52px;height:52px;margin:0 auto 12px}
-.platform-svg svg{width:100%;height:100%}
-.platform-name{font-size:11px;font-weight:700;color:#fff;margin-bottom:6px;line-height:1.3}
-.platform-badge{font-size:9px;font-weight:700;border-radius:100px;padding:2px 8px;display:inline-block;letter-spacing:0.5px}
-.platform-badge.available{color:#3DDC84;background:rgba(61,220,132,0.12)}
-.platform-badge:not(.available){color:var(--gray);background:rgba(139,156,182,0.1)}
 
 /* ─── CÓMO FUNCIONA ─── */
 .how-bg{background:var(--bg)}
@@ -199,7 +189,8 @@ footer{background:var(--bg);border-top:1px solid rgba(255,255,255,0.05);padding:
   .how-grid{grid-template-columns:1fr}
   .how-step::after{display:none}
   .partners-inner{grid-template-columns:1fr}
-  .platforms-grid{grid-template-columns:repeat(auto-fit,minmax(100px,1fr))}
+  .device-card{width:100px;height:95px}
+  .device-card img{width:36px;height:36px}
 }
 
 </style>
@@ -314,126 +305,43 @@ footer{background:var(--bg);border-top:1px solid rgba(255,255,255,0.05);padding:
     <div class="section-tag">Compatibilidad</div>
     <h2 class="section-title">Disponible en tus dispositivos</h2>
     <p class="section-sub">Una sola plataforma, múltiples dispositivos. Tu cliente disfruta donde quiera.</p>
-    <div class="platforms-grid">
-
-      <!-- Android TV — disponible -->
-      <div class="platform-card">
-        <div class="platform-svg">
-          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="3" y="15" width="50" height="30" rx="5" stroke="#3DDC84" stroke-width="2"/>
-            <circle cx="20" cy="28" r="3.5" fill="#3DDC84"/>
-            <circle cx="36" cy="28" r="3.5" fill="#3DDC84"/>
-            <path d="M17 36 Q28 43 39 36" stroke="#3DDC84" stroke-width="2.2" stroke-linecap="round" fill="none"/>
-            <line x1="23" y1="15" x2="20" y2="8" stroke="#3DDC84" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="20" cy="7" r="1.5" fill="#3DDC84"/>
-            <line x1="33" y1="15" x2="36" y2="8" stroke="#3DDC84" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="36" cy="7" r="1.5" fill="#3DDC84"/>
-            <rect x="26" y="45" width="4" height="6" fill="#3DDC84" opacity="0.45"/>
-            <rect x="20" y="51" width="16" height="2.5" rx="1.25" fill="#3DDC84" opacity="0.45"/>
-          </svg>
-        </div>
-        <div class="platform-name">Android TV</div>
-        <span class="platform-badge available">DISPONIBLE</span>
+    <div class="devices-grid">
+      <div class="device-card">
+        <img src="images/devices/chromecast.svg" alt="Chromecast">
+        <span class="device-name">Chromecast</span>
       </div>
-
-      <!-- Android Móvil — disponible -->
-      <div class="platform-card">
-        <div class="platform-svg">
-          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="14" y="8" width="28" height="42" rx="5" stroke="#3DDC84" stroke-width="2"/>
-            <circle cx="22" cy="22" r="3" fill="#3DDC84"/>
-            <circle cx="34" cy="22" r="3" fill="#3DDC84"/>
-            <path d="M19 30 Q28 37 37 30" stroke="#3DDC84" stroke-width="2.2" stroke-linecap="round" fill="none"/>
-            <line x1="25" y1="8" x2="23" y2="3" stroke="#3DDC84" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="23" cy="2" r="1.5" fill="#3DDC84"/>
-            <line x1="31" y1="8" x2="33" y2="3" stroke="#3DDC84" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="33" cy="2" r="1.5" fill="#3DDC84"/>
-            <rect x="24" y="42" width="8" height="4" rx="2" fill="#3DDC84" opacity="0.4"/>
-          </svg>
-        </div>
-        <div class="platform-name">Android Móvil</div>
-        <span class="platform-badge available">DISPONIBLE</span>
+      <div class="device-card">
+        <img src="images/devices/tvbox.svg" alt="TV Box">
+        <span class="device-name">TV Box</span>
       </div>
-
-      <!-- Samsung Tizen — próximamente -->
-      <div class="platform-card coming">
-        <div class="platform-svg">
-          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="28" cy="28" r="25" stroke="#1428A0" stroke-width="2"/>
-            <path d="M18 20 C18 20 18 13 26 13 C34 13 34 20 34 20 C34 26 28 27 28 27 C22 28 18 32 18 38 C18 44 24 44 28 44 C32 44 36 42 38 38" stroke="#1428A0" stroke-width="2.8" fill="none" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="platform-name">Samsung Tizen</div>
-        <span class="platform-badge">PRÓXIMAMENTE</span>
+      <div class="device-card">
+        <img src="images/devices/windows.svg" alt="Windows">
+        <span class="device-name">Windows</span>
       </div>
-
-      <!-- LG webOS — próximamente -->
-      <div class="platform-card coming">
-        <div class="platform-svg">
-          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="28" cy="28" r="25" stroke="#A50034" stroke-width="2"/>
-            <path d="M14 18 L14 38 L26 38" stroke="#A50034" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-            <path d="M31 18 L31 28 L42 28" stroke="#A50034" stroke-width="2.8" stroke-linecap="round" fill="none"/>
-            <circle cx="37" cy="34" r="5" stroke="#A50034" stroke-width="2.2"/>
-          </svg>
-        </div>
-        <div class="platform-name">LG webOS</div>
-        <span class="platform-badge">PRÓXIMAMENTE</span>
+      <div class="device-card">
+        <img src="images/devices/apple.svg" alt="Apple">
+        <span class="device-name">Apple</span>
       </div>
-
-      <!-- Apple iOS — próximamente -->
-      <div class="platform-card coming">
-        <div class="platform-svg">
-          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M28 14 C28 14 22 10 16 14 C10 18 10 28 12 34 C14 40 18 46 22 46 C24 46 26 44 28 44 C30 44 32 46 34 46 C38 46 42 40 44 34 C46 28 46 18 40 14 C34 10 28 14 28 14 Z" stroke="#A8B8C8" stroke-width="2" fill="none"/>
-            <path d="M28 14 C30 8 36 6 38 10" stroke="#A8B8C8" stroke-width="2" stroke-linecap="round" fill="none"/>
-          </svg>
-        </div>
-        <div class="platform-name">Apple iOS</div>
-        <span class="platform-badge">PRÓXIMAMENTE</span>
+      <div class="device-card">
+        <img src="images/devices/android.svg" alt="Android">
+        <span class="device-name">Android</span>
       </div>
-
-      <!-- Roku — próximamente -->
-      <div class="platform-card coming">
-        <div class="platform-svg">
-          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="18" y="4" width="20" height="48" rx="10" stroke="#6F1AB6" stroke-width="2"/>
-            <circle cx="28" cy="16" r="5" stroke="#6F1AB6" stroke-width="2"/>
-            <circle cx="21" cy="28" r="2.5" fill="#6F1AB6" opacity="0.65"/>
-            <circle cx="35" cy="28" r="2.5" fill="#6F1AB6" opacity="0.65"/>
-            <circle cx="28" cy="36" r="2.5" fill="#6F1AB6" opacity="0.65"/>
-            <circle cx="28" cy="44" r="2.5" fill="#6F1AB6" opacity="0.65"/>
-          </svg>
-        </div>
-        <div class="platform-name">Roku</div>
-        <span class="platform-badge">PRÓXIMAMENTE</span>
+      <div class="device-card">
+        <img src="images/devices/samsung-tv.svg" alt="Samsung TV">
+        <span class="device-name">Samsung TV</span>
       </div>
-
-      <!-- Amazon Fire TV — próximamente -->
-      <div class="platform-card coming">
-        <div class="platform-svg">
-          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M28 6 C24 12 20 16 20 24 C16 20 16 12 20 8 C14 14 12 24 16 32 C12 28 10 20 14 12 C10 20 10 30 14 38 C16 44 20 48 28 50 C36 48 40 44 42 38 C46 30 46 20 42 12 C46 20 46 28 42 32 C46 24 44 14 38 8 C42 12 42 20 38 24 C38 16 34 12 28 6 Z" stroke="#FF9900" stroke-width="1.8" fill="none"/>
-            <path d="M22 36 Q28 42 34 36" stroke="#FF9900" stroke-width="2" stroke-linecap="round" fill="none"/>
-          </svg>
-        </div>
-        <div class="platform-name">Amazon Fire TV</div>
-        <span class="platform-badge">PRÓXIMAMENTE</span>
+      <div class="device-card">
+        <img src="images/devices/lg-tv.svg" alt="LG Smart TV">
+        <span class="device-name">LG Smart TV</span>
       </div>
-
-      <!-- Tablet — próximamente -->
-      <div class="platform-card coming">
-        <div class="platform-svg">
-          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="4" y="10" width="48" height="36" rx="5" stroke="#8B9CB6" stroke-width="2"/>
-            <rect x="8" y="14" width="40" height="28" rx="3" stroke="#8B9CB6" stroke-width="1.5"/>
-            <circle cx="50" cy="28" r="1.8" fill="#8B9CB6"/>
-          </svg>
-        </div>
-        <div class="platform-name">Tablet</div>
-        <span class="platform-badge">PRÓXIMAMENTE</span>
+      <div class="device-card">
+        <img src="images/devices/hisense.svg" alt="Hisense">
+        <span class="device-name">Hisense</span>
       </div>
-
+      <div class="device-card">
+        <img src="images/devices/fire-tv.svg" alt="Fire TV Stick">
+        <span class="device-name">Fire TV Stick</span>
+      </div>
     </div>
   </div>
 </section>
