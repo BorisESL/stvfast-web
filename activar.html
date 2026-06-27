@@ -321,7 +321,7 @@ function verifyDevice(){
   btn.textContent='Verificando...';
   const fn=window._stfFns.httpsCallable('checkDeviceActivation');
   fn({deviceId}).then(res=>{
-    if(res.data && res.data.activated!==undefined){
+    if(res.data && res.data.activated===true){
       _actDeviceId=deviceId;
       document.getElementById('actPanel1').classList.remove('visible');
       document.getElementById('actPanel2').classList.add('visible');
