@@ -23,52 +23,27 @@ body{
   justify-content:center;
   padding:32px 16px;
 }
-
-/* ── Glow de fondo ── */
 .bg-glow{
   position:fixed;top:0;left:50%;transform:translateX(-50%);
   width:600px;height:600px;
   background:radial-gradient(circle,rgba(191,0,255,.12) 0%,transparent 70%);
-  pointer-events:none;
-  z-index:0;
+  pointer-events:none;z-index:0;
 }
-
-/* ── Logo ── */
-.logo-wrap{
-  position:relative;z-index:1;
-  text-align:center;
-  margin-bottom:36px;
-}
+.logo-wrap{position:relative;z-index:1;text-align:center;margin-bottom:36px}
 .logo{
-  font-family:'Orbitron',sans-serif;
-  font-size:22px;
-  font-weight:900;
-  letter-spacing:2px;
+  font-family:'Orbitron',sans-serif;font-size:22px;font-weight:900;letter-spacing:2px;
   background:linear-gradient(135deg,var(--white),var(--purple));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip:text;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
-.logo-sub{
-  font-size:12px;
-  color:var(--gray);
-  margin-top:4px;
-  letter-spacing:.5px;
-}
-
-/* ── Card ── */
+.logo-sub{font-size:12px;color:var(--gray);margin-top:4px;letter-spacing:.5px}
 .act-card{
   position:relative;z-index:1;
-  background:var(--bg3);
-  border:1px solid rgba(191,0,255,.18);
-  border-radius:20px;
-  padding:48px 40px;
-  width:100%;
-  max-width:520px;
+  background:var(--bg3);border:1px solid rgba(191,0,255,.18);
+  border-radius:20px;padding:48px 40px;
+  width:100%;max-width:520px;
   box-shadow:0 8px 48px rgba(0,0,0,.5);
 }
-
-/* ── Steps ── */
+/* Steps */
 .act-steps{display:flex;align-items:center;gap:12px;justify-content:center;margin-bottom:36px}
 .act-step{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray);font-weight:600;white-space:nowrap}
 .act-step-num{
@@ -81,104 +56,61 @@ body{
 .act-step.active{color:var(--white)}
 .act-step-sep{flex:1;height:2px;background:var(--gray2);transition:.3s;max-width:48px}
 .act-step-sep.done{background:var(--purple)}
-
-/* ── Panels ── */
+/* Panels */
 .act-panel{display:none}
 .act-panel.visible{display:block}
-
-/* ── Typography ── */
+/* Typography */
 .act-label{font-size:18px;font-weight:700;color:var(--white);margin-bottom:6px}
-.act-sub{font-size:14px;color:var(--gray);margin-bottom:22px;line-height:1.5}
-
-/* ── Fields ── */
+.act-sub{font-size:14px;color:var(--gray);margin-bottom:24px;line-height:1.5}
+/* Fields */
 .act-field{
   width:100%;
-  background:rgba(255,255,255,.04);
-  border:1px solid var(--gray2);
-  border-radius:10px;
-  padding:14px 16px;
-  color:var(--white);
-  font-size:15px;
-  font-family:inherit;
-  outline:none;
-  transition:.25s;
+  background:rgba(255,255,255,.04);border:1px solid var(--gray2);
+  border-radius:10px;padding:14px 16px;
+  color:var(--white);font-size:15px;font-family:inherit;
+  outline:none;transition:.25s;
 }
 .act-field:focus{border-color:var(--purple);box-shadow:0 0 0 3px rgba(191,0,255,.12)}
 .act-field::placeholder{color:var(--gray2)}
-
-/* ── Button ── */
+.act-field-label{font-size:12px;color:var(--gray);margin-bottom:4px;display:block;font-weight:500}
+.act-fields-group{display:flex;flex-direction:column;gap:14px}
+/* Button */
 .act-btn{
-  margin-top:16px;
-  width:100%;
-  padding:15px;
+  margin-top:20px;width:100%;padding:15px;
   background:linear-gradient(135deg,var(--purple),var(--purple2));
-  color:#fff;
-  border:none;
-  border-radius:10px;
-  font-size:15px;
-  font-weight:700;
-  font-family:inherit;
-  cursor:pointer;
-  transition:.25s;
-  letter-spacing:.5px;
+  color:#fff;border:none;border-radius:10px;
+  font-size:15px;font-weight:700;font-family:inherit;
+  cursor:pointer;transition:.25s;letter-spacing:.5px;
 }
 .act-btn:hover{opacity:.88;transform:translateY(-1px)}
 .act-btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
-
-/* ── Error ── */
-.act-error{margin-top:12px;color:#ff4d6d;font-size:13px;text-align:center;min-height:18px}
-
-/* ── Tabs ── */
+/* Tabs */
 .act-tabs{
-  display:flex;
-  border-radius:10px;
-  overflow:hidden;
-  border:1px solid var(--gray2);
-  margin-bottom:20px;
+  display:flex;border-radius:10px;overflow:hidden;
+  border:1px solid var(--gray2);margin-bottom:20px;
 }
 .act-tab{
-  flex:1;padding:11px;
-  background:transparent;
-  border:none;
-  color:var(--gray);
-  font-size:14px;font-weight:600;
-  cursor:pointer;
-  font-family:inherit;
-  transition:.25s;
+  flex:1;padding:11px;background:transparent;border:none;
+  color:var(--gray);font-size:14px;font-weight:600;
+  cursor:pointer;font-family:inherit;transition:.25s;
 }
 .act-tab.active{background:var(--purple);color:#fff}
-
-/* ── Fields group ── */
-.act-fields-group{display:flex;flex-direction:column;gap:12px}
-.act-field-label{font-size:12px;color:var(--gray);margin-bottom:4px;display:block;font-weight:500}
-
-/* ── Success ── */
+/* Error */
+.act-error{margin-top:12px;color:#ff4d6d;font-size:13px;text-align:center;min-height:18px}
+/* Success */
 .act-success{text-align:center;padding:8px 0}
 .act-success-icon{font-size:56px;margin-bottom:16px}
 .act-success-title{font-size:24px;font-weight:800;color:var(--white);margin-bottom:10px;font-family:'Orbitron',sans-serif}
 .act-success-desc{font-size:14px;color:var(--gray);line-height:1.7}
-.act-success-back{
-  display:inline-block;
-  margin-top:28px;
-  color:var(--purple);
-  font-size:14px;
-  font-weight:600;
-  text-decoration:none;
-}
+.act-success-back{display:inline-block;margin-top:28px;color:var(--purple);font-size:14px;font-weight:600;text-decoration:none}
 .act-success-back:hover{opacity:.8}
-
-/* ── Back link ── */
+/* Back link */
 .back-link{
-  position:relative;z-index:1;
-  margin-top:24px;
-  font-size:13px;
-  color:var(--gray);
-  text-decoration:none;
-  display:flex;align-items:center;gap:6px;
-  transition:.2s;
+  position:relative;z-index:1;margin-top:24px;
+  font-size:13px;color:var(--gray);text-decoration:none;
+  display:flex;align-items:center;gap:6px;transition:.2s;
 }
 .back-link:hover{color:var(--white)}
-
 @media(max-width:560px){
   .act-card{padding:32px 20px}
   .logo{font-size:18px}
@@ -191,89 +123,77 @@ body{
 
 <div class="bg-glow"></div>
 
-<!-- Logo -->
 <div class="logo-wrap">
   <div class="logo">Stfast Stream</div>
   <div class="logo-sub">Activación de dispositivo</div>
 </div>
 
-<!-- Card principal -->
 <div class="act-card">
 
-  <!-- Indicadores de paso -->
   <div class="act-steps">
     <div class="act-step active" id="actStep1">
       <div class="act-step-num">1</div>
-      <span>Verificar código</span>
+      <span>Código del dispositivo</span>
     </div>
     <div class="act-step-sep" id="actSep"></div>
     <div class="act-step" id="actStep2">
       <div class="act-step-num">2</div>
-      <span>Configurar fuente</span>
+      <span>Credenciales IPTV</span>
     </div>
   </div>
 
   <!-- Panel 1: Código del dispositivo -->
   <div class="act-panel visible" id="actPanel1">
     <div class="act-label">Código del dispositivo</div>
-    <div class="act-sub">Ingresa el código de activación que aparece en la pantalla de tu TV Samsung o Android TV.</div>
+    <div class="act-sub">Ingresa el código que aparece en la pantalla de tu TV.</div>
     <input
       class="act-field"
       id="actDeviceId"
       type="text"
-      placeholder="Ej: ABC123"
-      maxlength="20"
+      placeholder="Ej: 9XYVOH-2XCVUH"
+      maxlength="30"
       autocomplete="off"
       oninput="this.value=this.value.toUpperCase()"
     >
-    <button class="act-btn" id="actVerifyBtn" onclick="verifyDevice()">Verificar código</button>
+    <button class="act-btn" id="actNextBtn" onclick="goToStep2()">Siguiente</button>
     <div class="act-error" id="actError1"></div>
   </div>
 
-  <!-- Panel 2: Configurar fuente -->
+  <!-- Panel 2: Credenciales IPTV -->
   <div class="act-panel" id="actPanel2">
-    <div class="act-label">Configurar fuente de contenido</div>
-    <div class="act-sub">Elige el tipo de conexión e ingresa los datos de tu lista.</div>
-
-    <input
-      class="act-field"
-      id="actNombre"
-      type="text"
-      placeholder="Nombre de la lista (ej: Mi Lista)"
-      autocomplete="off"
-      style="margin-bottom:20px"
-    >
+    <div class="act-label">Credenciales IPTV</div>
+    <div class="act-sub">Elige el tipo de conexión e ingresa los datos de tu proveedor.</div>
 
     <div class="act-tabs">
-      <button class="act-tab active" id="tabM3u" onclick="switchTab('m3u')">M3U</button>
-      <button class="act-tab" id="tabXtream" onclick="switchTab('xtream')">Xtream Codes</button>
+      <button class="act-tab active" id="tabXtream" onclick="switchTab('xtream')">Xtream Codes</button>
+      <button class="act-tab" id="tabM3u" onclick="switchTab('m3u')">URL M3U</button>
     </div>
 
-    <!-- Tab M3U -->
-    <div id="panelM3u" class="act-fields-group">
+    <!-- Xtream -->
+    <div id="panelXtream" class="act-fields-group">
+      <div>
+        <label class="act-field-label" for="actHost">Servidor (host)</label>
+        <input class="act-field" id="actHost" type="url" placeholder="http://servidor.com:8080" autocomplete="off">
+      </div>
+      <div>
+        <label class="act-field-label" for="actUser">Usuario</label>
+        <input class="act-field" id="actUser" type="text" placeholder="usuario" autocomplete="off">
+      </div>
+      <div>
+        <label class="act-field-label" for="actPass">Contraseña</label>
+        <input class="act-field" id="actPass" type="password" placeholder="contraseña" autocomplete="off">
+      </div>
+    </div>
+
+    <!-- M3U -->
+    <div id="panelM3u" class="act-fields-group" style="display:none">
       <div>
         <label class="act-field-label" for="actM3uUrl">URL de la lista M3U</label>
         <input class="act-field" id="actM3uUrl" type="url" placeholder="http://..." autocomplete="off">
       </div>
     </div>
 
-    <!-- Tab Xtream -->
-    <div id="panelXtream" class="act-fields-group" style="display:none">
-      <div>
-        <label class="act-field-label" for="actXtreamUrl">URL del servidor</label>
-        <input class="act-field" id="actXtreamUrl" type="url" placeholder="http://..." autocomplete="off">
-      </div>
-      <div>
-        <label class="act-field-label" for="actXtreamUser">Usuario</label>
-        <input class="act-field" id="actXtreamUser" type="text" placeholder="usuario" autocomplete="off">
-      </div>
-      <div>
-        <label class="act-field-label" for="actXtreamPass">Contraseña</label>
-        <input class="act-field" id="actXtreamPass" type="password" placeholder="contraseña" autocomplete="off">
-      </div>
-    </div>
-
-    <button class="act-btn" id="actSaveBtn" onclick="activateDevice()" style="margin-top:24px">Activar</button>
+    <button class="act-btn" id="actSaveBtn" onclick="activateDevice()">Activar</button>
     <div class="act-error" id="actError2"></div>
   </div>
 
@@ -308,81 +228,66 @@ body{
   window._stfFns=firebase.app().functions('southamerica-east1');
 })();
 
-let _actDeviceId='';
-let _actTab='m3u';
+let _deviceId='';
+let _tab='xtream';
 
-function verifyDevice(){
-  const btn=document.getElementById('actVerifyBtn');
+function goToStep2(){
   const errEl=document.getElementById('actError1');
   const deviceId=document.getElementById('actDeviceId').value.trim();
   errEl.textContent='';
-  if(!deviceId){errEl.textContent='Por favor ingresa el código.';return;}
-  btn.disabled=true;
-  btn.textContent='Verificando...';
-  const fn=window._stfFns.httpsCallable('checkDeviceActivation');
-  fn({deviceId}).then(res=>{
-    if(res.data && res.data.activated===true){
-      _actDeviceId=deviceId;
-      document.getElementById('actPanel1').classList.remove('visible');
-      document.getElementById('actPanel2').classList.add('visible');
-      document.getElementById('actStep1').classList.remove('active');
-      document.getElementById('actStep2').classList.add('active');
-      document.getElementById('actSep').classList.add('done');
-    } else {
-      errEl.textContent='Código no encontrado. Verifica e intenta de nuevo.';
-    }
-  }).catch(err=>{
-    if(err.code==='functions/not-found'){
-      errEl.textContent='Código no encontrado. Verifica e intenta de nuevo.';
-    } else {
-      errEl.textContent='Error al verificar. Intenta de nuevo.';
-    }
-  }).finally(()=>{
-    btn.disabled=false;
-    btn.textContent='Verificar código';
-  });
+  if(!deviceId){errEl.textContent='Por favor ingresa el código del dispositivo.';return;}
+  _deviceId=deviceId;
+  document.getElementById('actPanel1').classList.remove('visible');
+  document.getElementById('actPanel2').classList.add('visible');
+  document.getElementById('actStep1').classList.remove('active');
+  document.getElementById('actStep2').classList.add('active');
+  document.getElementById('actSep').classList.add('done');
 }
 
 function switchTab(tab){
-  _actTab=tab;
-  document.getElementById('panelM3u').style.display=tab==='m3u'?'flex':'none';
+  _tab=tab;
   document.getElementById('panelXtream').style.display=tab==='xtream'?'flex':'none';
-  document.getElementById('tabM3u').className='act-tab'+(tab==='m3u'?' active':'');
+  document.getElementById('panelM3u').style.display=tab==='m3u'?'flex':'none';
   document.getElementById('tabXtream').className='act-tab'+(tab==='xtream'?' active':'');
+  document.getElementById('tabM3u').className='act-tab'+(tab==='m3u'?' active':'');
 }
 
 function activateDevice(){
   const btn=document.getElementById('actSaveBtn');
   const errEl=document.getElementById('actError2');
   errEl.textContent='';
-  const nombre=document.getElementById('actNombre').value.trim();
-  if(!nombre){errEl.textContent='Por favor ingresa el nombre de la lista.';return;}
-  let payload={deviceId:_actDeviceId,tipo:_actTab,nombre};
-  if(_actTab==='m3u'){
+
+  let payload={deviceId:_deviceId,tipo:_tab};
+
+  if(_tab==='xtream'){
+    const host=document.getElementById('actHost').value.trim();
+    const user=document.getElementById('actUser').value.trim();
+    const pass=document.getElementById('actPass').value.trim();
+    if(!host||!user||!pass){errEl.textContent='Completa todos los campos: servidor, usuario y contraseña.';return;}
+    payload.host=host;
+    payload.iptvUser=user;
+    payload.iptvPass=pass;
+  } else {
     const m3uUrl=document.getElementById('actM3uUrl').value.trim();
     if(!m3uUrl){errEl.textContent='Por favor ingresa la URL M3U.';return;}
     payload.m3uUrl=m3uUrl;
-  } else {
-    const xtreamUrl=document.getElementById('actXtreamUrl').value.trim();
-    const xtreamUser=document.getElementById('actXtreamUser').value.trim();
-    const xtreamPass=document.getElementById('actXtreamPass').value.trim();
-    if(!xtreamUrl||!xtreamUser||!xtreamPass){errEl.textContent='Completa todos los campos Xtream.';return;}
-    payload.xtreamUrl=xtreamUrl;
-    payload.xtreamUser=xtreamUser;
-    payload.xtreamPass=xtreamPass;
   }
+
   btn.disabled=true;
   btn.textContent='Activando...';
-  const fn=window._stfFns.httpsCallable('saveDeviceSource');
-  fn(payload).then(()=>{
-    document.getElementById('actPanel2').classList.remove('visible');
-    document.getElementById('actPanel3').classList.add('visible');
-  }).catch(()=>{
-    errEl.textContent='Error al guardar. Intenta de nuevo.';
-  }).finally(()=>{
-    btn.disabled=false;
-    btn.textContent='Activar';
-  });
+
+  window._stfFns.httpsCallable('registerDevice')(payload)
+    .then(()=>{
+      document.getElementById('actPanel2').classList.remove('visible');
+      document.getElementById('actPanel3').classList.add('visible');
+    })
+    .catch(err=>{
+      errEl.textContent=err.message||'Error al activar. Intenta de nuevo.';
+    })
+    .finally(()=>{
+      btn.disabled=false;
+      btn.textContent='Activar';
+    });
 }
 </script>
 </body>
