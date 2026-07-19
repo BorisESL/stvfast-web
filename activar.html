@@ -84,6 +84,17 @@ body{
 }
 .act-btn:hover{opacity:.88;transform:translateY(-1px)}
 .act-btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.act-status-row{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  margin-bottom:20px;padding:10px 14px;
+  background:rgba(255,255,255,.03);border:1px solid var(--gray2);border-radius:10px;
+}
+.act-status-badge{font-size:12px;font-weight:700;color:#3ddc84;display:flex;align-items:center;gap:6px}
+.act-device-id{font-size:12px;color:var(--gray);font-family:monospace;letter-spacing:.5px}
+.act-btn-secondary{background:transparent;border:1px solid var(--purple);color:var(--purple)}
+.act-btn-secondary:hover:not(:disabled){background:rgba(191,0,255,.08)}
+.act-btn-secondary:disabled{opacity:.5;cursor:not-allowed}
+.act-pay-note{font-size:11px;color:var(--gray);text-align:center;margin-top:8px}
 /* Listas guardadas */
 .act-lists{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
 .act-list-item{
@@ -163,11 +174,17 @@ body{
 
     <!-- Vista: listas ya guardadas -->
     <div id="actListsView" style="display:none">
+      <div class="act-status-row">
+        <div class="act-status-badge">&#9989; Dispositivo activo</div>
+        <div class="act-device-id" id="actDeviceIdLabel"></div>
+      </div>
       <div class="act-label">Tus listas</div>
       <div class="act-sub">Estas son las listas activas en tu dispositivo.</div>
       <div class="act-lists" id="actListsContainer"></div>
       <button class="act-btn" id="actAddListBtn" onclick="showNewListForm()">+ Agregar lista</button>
       <div class="act-error" id="actListsError"></div>
+      <button class="act-btn act-btn-secondary" id="actPayBtn" disabled>&#128179; Activar definitivo / Pagar</button>
+      <div class="act-pay-note">Próximamente</div>
     </div>
 
     <!-- Vista: formulario de nueva lista -->
@@ -269,6 +286,7 @@ function renderStep2(lists){
   const newListView=document.getElementById('actNewListView');
 
   if(lists.length>0){
+    document.getElementById('actDeviceIdLabel').textContent=_deviceId;
     const container=document.getElementById('actListsContainer');
     container.innerHTML=lists.map(l=>`
       <div class="act-list-item">
