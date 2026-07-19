@@ -84,17 +84,16 @@ body{
 }
 .act-btn:hover{opacity:.88;transform:translateY(-1px)}
 .act-btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
-/* Tabs */
-.act-tabs{
-  display:flex;border-radius:10px;overflow:hidden;
-  border:1px solid var(--gray2);margin-bottom:20px;
+/* Listas guardadas */
+.act-lists{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.act-list-item{
+  display:flex;flex-direction:column;gap:2px;
+  background:rgba(255,255,255,.04);border:1px solid var(--gray2);
+  border-radius:10px;padding:12px 16px;
 }
-.act-tab{
-  flex:1;padding:11px;background:transparent;border:none;
-  color:var(--gray);font-size:14px;font-weight:600;
-  cursor:pointer;font-family:inherit;transition:.25s;
-}
-.act-tab.active{background:var(--purple);color:#fff}
+.act-list-nombre{font-size:15px;font-weight:700;color:var(--white)}
+.act-list-dns{font-size:12px;color:var(--gray)}
+.act-lists-full{font-size:13px;color:var(--gray);text-align:center;margin-top:4px}
 /* Error */
 .act-error{margin-top:12px;color:#ff4d6d;font-size:13px;text-align:center;min-height:18px}
 /* Success */
@@ -159,42 +158,45 @@ body{
     <div class="act-error" id="actError1"></div>
   </div>
 
-  <!-- Panel 2: Credenciales IPTV -->
+  <!-- Panel 2: Listas guardadas / Credenciales IPTV -->
   <div class="act-panel" id="actPanel2">
-    <div class="act-label">Credenciales IPTV</div>
-    <div class="act-sub">Elige el tipo de conexión e ingresa los datos de tu proveedor.</div>
 
-    <div class="act-tabs">
-      <button class="act-tab active" id="tabXtream" onclick="switchTab('xtream')">Xtream Codes</button>
-      <button class="act-tab" id="tabM3u" onclick="switchTab('m3u')">URL M3U</button>
+    <!-- Vista: listas ya guardadas -->
+    <div id="actListsView" style="display:none">
+      <div class="act-label">Tus listas</div>
+      <div class="act-sub">Estas son las listas activas en tu dispositivo.</div>
+      <div class="act-lists" id="actListsContainer"></div>
+      <button class="act-btn" id="actAddListBtn" onclick="showNewListForm()">+ Agregar lista</button>
+      <div class="act-error" id="actListsError"></div>
     </div>
 
-    <!-- Xtream -->
-    <div id="panelXtream" class="act-fields-group">
-      <div>
-        <label class="act-field-label" for="actHost">Servidor (host)</label>
-        <input class="act-field" id="actHost" type="url" placeholder="http://servidor.com:8080" autocomplete="off">
-      </div>
-      <div>
-        <label class="act-field-label" for="actUser">Usuario</label>
-        <input class="act-field" id="actUser" type="text" placeholder="usuario" autocomplete="off">
-      </div>
-      <div>
-        <label class="act-field-label" for="actPass">Contraseña</label>
-        <input class="act-field" id="actPass" type="password" placeholder="contraseña" autocomplete="off">
-      </div>
-    </div>
+    <!-- Vista: formulario de nueva lista -->
+    <div id="actNewListView">
+      <div class="act-label" id="actFormTitle">Credenciales IPTV</div>
+      <div class="act-sub">Ingresa los datos de tu proveedor Xtream Codes.</div>
 
-    <!-- M3U -->
-    <div id="panelM3u" class="act-fields-group" style="display:none">
-      <div>
-        <label class="act-field-label" for="actM3uUrl">URL de la lista M3U</label>
-        <input class="act-field" id="actM3uUrl" type="url" placeholder="http://..." autocomplete="off">
+      <div class="act-fields-group">
+        <div>
+          <label class="act-field-label" for="actNombre">Nombre de la lista</label>
+          <input class="act-field" id="actNombre" type="text" placeholder="Ej: Principal" maxlength="40" autocomplete="off">
+        </div>
+        <div>
+          <label class="act-field-label" for="actHost">Servidor (host)</label>
+          <input class="act-field" id="actHost" type="url" placeholder="http://servidor.com:8080" autocomplete="off">
+        </div>
+        <div>
+          <label class="act-field-label" for="actUser">Usuario</label>
+          <input class="act-field" id="actUser" type="text" placeholder="usuario" autocomplete="off">
+        </div>
+        <div>
+          <label class="act-field-label" for="actPass">Contraseña</label>
+          <input class="act-field" id="actPass" type="password" placeholder="contraseña" autocomplete="off">
+        </div>
       </div>
-    </div>
 
-    <button class="act-btn" id="actSaveBtn" onclick="activateDevice()">Activar</button>
-    <div class="act-error" id="actError2"></div>
+      <button class="act-btn" id="actSaveBtn" onclick="activateDevice()">Activar</button>
+      <div class="act-error" id="actError2"></div>
+    </div>
   </div>
 
   <!-- Panel 3: Éxito -->
@@ -229,7 +231,7 @@ body{
 })();
 
 let _deviceId='';
-let _tab='xtream';
+let _listsFull=false;
 
 function goToStep2(){
   const errEl=document.getElementById('actError1');
@@ -237,19 +239,75 @@ function goToStep2(){
   errEl.textContent='';
   if(!deviceId){errEl.textContent='Por favor ingresa el código del dispositivo.';return;}
   _deviceId=deviceId;
-  document.getElementById('actPanel1').classList.remove('visible');
-  document.getElementById('actPanel2').classList.add('visible');
-  document.getElementById('actStep1').classList.remove('active');
-  document.getElementById('actStep2').classList.add('active');
-  document.getElementById('actSep').classList.add('done');
+
+  const btn=document.getElementById('actNextBtn');
+  btn.disabled=true;
+  btn.textContent='Verificando...';
+
+  window._stfFns.httpsCallable('getDeviceLists')({deviceId})
+    .then(res=>{
+      const data=res.data||{};
+      _listsFull=!!data.full;
+      renderStep2(Array.isArray(data.lists)?data.lists:[]);
+      document.getElementById('actPanel1').classList.remove('visible');
+      document.getElementById('actPanel2').classList.add('visible');
+      document.getElementById('actStep1').classList.remove('active');
+      document.getElementById('actStep2').classList.add('active');
+      document.getElementById('actSep').classList.add('done');
+    })
+    .catch(err=>{
+      errEl.textContent=err.message||'Error al verificar el dispositivo. Intenta de nuevo.';
+    })
+    .finally(()=>{
+      btn.disabled=false;
+      btn.textContent='Siguiente';
+    });
 }
 
-function switchTab(tab){
-  _tab=tab;
-  document.getElementById('panelXtream').style.display=tab==='xtream'?'flex':'none';
-  document.getElementById('panelM3u').style.display=tab==='m3u'?'flex':'none';
-  document.getElementById('tabXtream').className='act-tab'+(tab==='xtream'?' active':'');
-  document.getElementById('tabM3u').className='act-tab'+(tab==='m3u'?' active':'');
+function renderStep2(lists){
+  const listsView=document.getElementById('actListsView');
+  const newListView=document.getElementById('actNewListView');
+
+  if(lists.length>0){
+    const container=document.getElementById('actListsContainer');
+    container.innerHTML=lists.map(l=>`
+      <div class="act-list-item">
+        <div class="act-list-nombre">${escapeHtml(l.nombre||'Sin nombre')}</div>
+        <div class="act-list-dns">${escapeHtml(l.dns||'')}</div>
+      </div>
+    `).join('');
+
+    const addBtn=document.getElementById('actAddListBtn');
+    const fullMsg=document.getElementById('actListsError');
+    if(_listsFull){
+      addBtn.style.display='none';
+      fullMsg.className='';
+      fullMsg.classList.add('act-lists-full');
+      fullMsg.textContent='Alcanzaste el máximo de 5 listas.';
+    } else {
+      addBtn.style.display='block';
+      fullMsg.textContent='';
+    }
+
+    listsView.style.display='block';
+    newListView.style.display='none';
+  } else {
+    listsView.style.display='none';
+    newListView.style.display='block';
+    document.getElementById('actFormTitle').textContent='Credenciales IPTV';
+  }
+}
+
+function showNewListForm(){
+  document.getElementById('actListsView').style.display='none';
+  document.getElementById('actNewListView').style.display='block';
+  document.getElementById('actFormTitle').textContent='Agregar lista';
+}
+
+function escapeHtml(str){
+  const div=document.createElement('div');
+  div.textContent=str;
+  return div.innerHTML;
 }
 
 function activateDevice(){
@@ -257,21 +315,13 @@ function activateDevice(){
   const errEl=document.getElementById('actError2');
   errEl.textContent='';
 
-  let payload={deviceId:_deviceId,tipo:_tab};
+  const nombre=document.getElementById('actNombre').value.trim();
+  const host=document.getElementById('actHost').value.trim();
+  const user=document.getElementById('actUser').value.trim();
+  const pass=document.getElementById('actPass').value.trim();
+  if(!nombre||!host||!user||!pass){errEl.textContent='Completa todos los campos: nombre, servidor, usuario y contraseña.';return;}
 
-  if(_tab==='xtream'){
-    const host=document.getElementById('actHost').value.trim();
-    const user=document.getElementById('actUser').value.trim();
-    const pass=document.getElementById('actPass').value.trim();
-    if(!host||!user||!pass){errEl.textContent='Completa todos los campos: servidor, usuario y contraseña.';return;}
-    payload.host=host;
-    payload.iptvUser=user;
-    payload.iptvPass=pass;
-  } else {
-    const m3uUrl=document.getElementById('actM3uUrl').value.trim();
-    if(!m3uUrl){errEl.textContent='Por favor ingresa la URL M3U.';return;}
-    payload.m3uUrl=m3uUrl;
-  }
+  const payload={deviceId:_deviceId,nombre,dns:host,iptvUser:user,iptvPass:pass};
 
   btn.disabled=true;
   btn.textContent='Activando...';
