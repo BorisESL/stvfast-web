@@ -14,23 +14,54 @@
   margin-top: 0;
 }
 
-.devices-grid {
+.devices-carousel {
+  overflow: hidden;
+  width: 100%;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+}
+
+.devices-track {
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-  gap: 32px;
+  width: max-content;
+  gap: 16px;
+  animation: devices-scroll-left 24s linear infinite;
+}
+
+.devices-track.scroll-right {
+  animation-name: devices-scroll-right;
+}
+
+.devices-carousel:hover .devices-track {
+  animation-play-state: paused;
+}
+
+@keyframes devices-scroll-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes devices-scroll-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .devices-track {
+    animation: none;
+  }
 }
 
 .device-card {
   background: #111827;
   border-radius: 14px;
-  width: 150px;
-  height: 158px;
+  width: 130px;
+  height: 120px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 6px;
   flex-shrink: 0;
 }
 
@@ -44,8 +75,8 @@
 
 .device-card img,
 .device-card .device-icon-text {
-  width: 62px;
-  height: 62px;
+  width: 52px;
+  height: 52px;
   object-fit: contain;
   filter: brightness(0) invert(1);
 }
@@ -55,7 +86,7 @@
   align-items: center;
   justify-content: center;
   font-family: 'Orbitron', monospace;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 900;
   color: #fff;
   letter-spacing: 2px;
@@ -63,7 +94,7 @@
 }
 
 .device-card .device-name {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   color: #fff;
   text-align: center;
@@ -76,7 +107,7 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   border-radius: 100px;
-  padding: 3px 10px;
+  padding: 2px 8px;
   display: inline-block;
 }
 

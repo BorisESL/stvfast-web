@@ -192,7 +192,7 @@ footer{background:var(--bg);border-top:1px solid rgba(255,255,255,0.05);padding:
   .partners-inner{grid-template-columns:1fr}
   .device-card{width:100px;height:95px}
   .device-card img{width:36px;height:36px}
-  .devices-grid{gap:16px}
+  .devices-track{gap:16px}
 }
 
 </style>
@@ -309,49 +309,93 @@ footer{background:var(--bg);border-top:1px solid rgba(255,255,255,0.05);padding:
     <p class="section-sub">Una sola plataforma, múltiples dispositivos. Tu cliente disfruta donde quiera.</p>
 
     <div class="devices-group-label">Disponibles</div>
-    <div class="devices-grid">
-      <div class="device-card available">
-        <img src="img/Android_TV.png" alt="Android TV">
-        <span class="device-name">Android TV</span>
-        <span class="device-badge badge-available">DISPONIBLE</span>
-      </div>
-      <div class="device-card available">
-        <img src="img/android-logo-2.svg" alt="Android Móvil">
-        <span class="device-name">Android Móvil</span>
-        <span class="device-badge badge-available">DISPONIBLE</span>
-      </div>
-      <div class="device-card available">
-        <img src="img/tvbox1.png" alt="TV Box">
-        <span class="device-name">TV Box</span>
-        <span class="device-badge badge-available">DISPONIBLE</span>
-      </div>
-      <div class="device-card available">
-        <img src="img/samsung-8.svg" alt="Samsung Tizen">
-        <span class="device-name">Samsung Tizen</span>
-        <span class="device-badge badge-available">DISPONIBLE</span>
+    <div class="devices-carousel">
+      <div class="devices-track">
+        <div class="device-card available">
+          <img src="img/Android_TV.png" alt="Android TV">
+          <span class="device-name">Android TV</span>
+          <span class="device-badge badge-available">DISPONIBLE</span>
+        </div>
+        <div class="device-card available">
+          <img src="img/android-logo-2.svg" alt="Android Móvil">
+          <span class="device-name">Android Móvil</span>
+          <span class="device-badge badge-available">DISPONIBLE</span>
+        </div>
+        <div class="device-card available">
+          <img src="img/tvbox1.png" alt="TV Box">
+          <span class="device-name">TV Box</span>
+          <span class="device-badge badge-available">DISPONIBLE</span>
+        </div>
+        <div class="device-card available">
+          <img src="img/samsung-8.svg" alt="Samsung Tizen">
+          <span class="device-name">Samsung Tizen</span>
+          <span class="device-badge badge-available">DISPONIBLE</span>
+        </div>
+        <div class="device-card available" aria-hidden="true">
+          <img src="img/Android_TV.png" alt="">
+          <span class="device-name">Android TV</span>
+          <span class="device-badge badge-available">DISPONIBLE</span>
+        </div>
+        <div class="device-card available" aria-hidden="true">
+          <img src="img/android-logo-2.svg" alt="">
+          <span class="device-name">Android Móvil</span>
+          <span class="device-badge badge-available">DISPONIBLE</span>
+        </div>
+        <div class="device-card available" aria-hidden="true">
+          <img src="img/tvbox1.png" alt="">
+          <span class="device-name">TV Box</span>
+          <span class="device-badge badge-available">DISPONIBLE</span>
+        </div>
+        <div class="device-card available" aria-hidden="true">
+          <img src="img/samsung-8.svg" alt="">
+          <span class="device-name">Samsung Tizen</span>
+          <span class="device-badge badge-available">DISPONIBLE</span>
+        </div>
       </div>
     </div>
     <div class="devices-group-label">Próximamente</div>
-    <div class="devices-grid">
-      <div class="device-card coming">
-        <img src="img/logo-lg.svg" alt="LG Smart TV">
-        <span class="device-name">LG Smart TV</span>
-        <span class="device-badge badge-coming">PRÓXIMAMENTE</span>
-      </div>
-      <div class="device-card coming">
-        <div class="device-icon-text">ROKU</div>
-        <span class="device-name">Roku</span>
-        <span class="device-badge badge-coming">PRÓXIMAMENTE</span>
-      </div>
-      <div class="device-card coming">
-        <img src="img/apple.png" alt="iOS">
-        <span class="device-name">iOS</span>
-        <span class="device-badge badge-coming">PRÓXIMAMENTE</span>
-      </div>
-      <div class="device-card coming">
-        <img src="img/microsoft-windows-22.svg" alt="Windows">
-        <span class="device-name">Windows</span>
-        <span class="device-badge badge-coming">PRÓXIMAMENTE</span>
+    <div class="devices-carousel">
+      <div class="devices-track scroll-right">
+        <div class="device-card coming">
+          <img src="img/logo-lg.svg" alt="LG Smart TV">
+          <span class="device-name">LG Smart TV</span>
+          <span class="device-badge badge-coming">PRÓXIMAMENTE</span>
+        </div>
+        <div class="device-card coming">
+          <div class="device-icon-text">ROKU</div>
+          <span class="device-name">Roku</span>
+          <span class="device-badge badge-coming">PRÓXIMAMENTE</span>
+        </div>
+        <div class="device-card coming">
+          <img src="img/apple.png" alt="iOS">
+          <span class="device-name">iOS</span>
+          <span class="device-badge badge-coming">PRÓXIMAMENTE</span>
+        </div>
+        <div class="device-card coming">
+          <img src="img/microsoft-windows-22.svg" alt="Windows">
+          <span class="device-name">Windows</span>
+          <span class="device-badge badge-coming">PRÓXIMAMENTE</span>
+        </div>
+        <div class="device-card coming" aria-hidden="true">
+          <img src="img/logo-lg.svg" alt="">
+          <span class="device-name">LG Smart TV</span>
+          <span class="device-badge badge-coming">PRÓXIMAMENTE</span>
+        </div>
+        <div class="device-card coming" aria-hidden="true">
+          <div class="device-icon-text">ROKU</div>
+          <span class="device-name">Roku</span>
+          <span class="device-badge badge-coming">PRÓXIMAMENTE</span>
+        </div>
+        <div class="device-card coming" aria-hidden="true">
+          <img src="img/apple.png" alt="">
+          <span class="device-name">iOS</span>
+          <span class="device-badge badge-coming">PRÓXIMAMENTE</span>
+        </div>
+        <div class="device-card coming" aria-hidden="true">
+          <img src="img/microsoft-windows-22.svg" alt="">
+          <span class="device-name">Windows</span>
+          <span class="device-badge badge-coming">PRÓXIMAMENTE</span>
+        </div>
       </div>
     </div>
   </div>
