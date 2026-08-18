@@ -18,19 +18,19 @@
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
-  gap: 16px;
+  gap: 32px;
 }
 
 .device-card {
   background: #111827;
   border-radius: 14px;
-  width: 130px;
-  height: 120px;
+  width: 150px;
+  height: 158px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 12px;
   flex-shrink: 0;
 }
 
@@ -44,8 +44,8 @@
 
 .device-card img,
 .device-card .device-icon-text {
-  width: 52px;
-  height: 52px;
+  width: 62px;
+  height: 62px;
   object-fit: contain;
   filter: brightness(0) invert(1);
 }
@@ -55,7 +55,7 @@
   align-items: center;
   justify-content: center;
   font-family: 'Orbitron', monospace;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 900;
   color: #fff;
   letter-spacing: 2px;
@@ -63,7 +63,7 @@
 }
 
 .device-card .device-name {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   color: #fff;
   text-align: center;
@@ -76,7 +76,7 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   border-radius: 100px;
-  padding: 2px 8px;
+  padding: 3px 10px;
   display: inline-block;
 }
 
