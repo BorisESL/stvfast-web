@@ -16,7 +16,8 @@
 
 .devices-carousel {
   overflow: hidden;
-  width: 100%;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
   -webkit-mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
   mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
 }
@@ -56,12 +57,12 @@
   background: #111827;
   border-radius: 14px;
   width: 130px;
-  height: 120px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 16px;
   flex-shrink: 0;
 }
 
@@ -75,8 +76,8 @@
 
 .device-card img,
 .device-card .device-icon-text {
-  width: 52px;
-  height: 52px;
+  width: 60px;
+  height: 60px;
   object-fit: contain;
   filter: brightness(0) invert(1);
 }
@@ -94,7 +95,7 @@
 }
 
 .device-card .device-name {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   color: #fff;
   text-align: center;
@@ -107,7 +108,7 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   border-radius: 100px;
-  padding: 2px 8px;
+  padding: 4px 12px;
   display: inline-block;
 }
 
