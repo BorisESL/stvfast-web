@@ -3,6 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Anti-clickjacking (frame-buster): oculta la página y rompe si se carga dentro de un iframe.
+     GitHub Pages no permite cabeceras X-Frame-Options/CSP, por eso se hace en cliente. -->
+<style id="antiClickjack">html{display:none}</style>
+<script>
+(function(){
+  if (self === top) {
+    document.documentElement.style.display = 'block';
+  } else {
+    try { top.location = self.location; } catch (e) {}
+  }
+})();
+</script>
 <title>Activar dispositivo — Stfast Stream</title>
 <meta name="description" content="Activa tu dispositivo en Stfast Stream en dos pasos: ingresa el código que aparece en tu TV y tus credenciales IPTV.">
 <meta name="robots" content="noindex">
