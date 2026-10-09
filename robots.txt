@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /activar.html
+
+Sitemap: https://borisesl.github.io/stvfast-web/sitemap.xml
