@@ -163,6 +163,11 @@ svg.ic{width:1em;height:1em;display:inline-block;vertical-align:-.125em;fill:non
 /* Error */
 .act-error{margin-top:12px;color:#ff6b84;font-size:13px;text-align:center;min-height:18px;line-height:1.4}
 
+/* Consent checkbox */
+.act-consent{display:flex;align-items:flex-start;gap:10px;margin-top:20px;font-size:13px;color:var(--gray);line-height:1.5;cursor:pointer;user-select:none}
+.act-consent input{width:18px;height:18px;margin-top:1px;flex-shrink:0;accent-color:var(--purple);cursor:pointer}
+.act-consent a{color:var(--purple-ink);text-decoration:underline}
+
 /* Privacy note */
 .act-privacy{margin-top:18px;font-size:12px;color:var(--gray);text-align:center;line-height:1.6}
 .act-privacy a{color:var(--gray);text-decoration:underline}
@@ -308,6 +313,11 @@ svg.ic{width:1em;height:1em;display:inline-block;vertical-align:-.125em;fill:non
       </div>
     </div>
 
+    <label class="act-consent">
+      <input type="checkbox" id="actConsent" onchange="clearErr('actError2')">
+      <span>He leído y acepto la <a href="privacidad.html" target="_blank" rel="noopener noreferrer">Política de Privacidad</a>.</span>
+    </label>
+
     <button class="act-btn" id="actSaveBtn" onclick="activateDevice()">
       <span class="spinner"></span>
       <span class="btn-label-ic">Activar dispositivo</span>
@@ -399,6 +409,11 @@ function activateDevice(){
   const btn=document.getElementById('actSaveBtn');
   const errEl=document.getElementById('actError2');
   errEl.textContent='';
+
+  if(!document.getElementById('actConsent').checked){
+    errEl.textContent='Debes aceptar la Política de Privacidad para continuar.';
+    return;
+  }
 
   let payload={deviceId:_deviceId,tipo:_tab};
 
