@@ -1,94 +1,86 @@
-/* ─── DISPOSITIVOS (carrusel) ─── */
-.devices-group {
-  margin-top: 28px;
-}
-.devices-group:first-of-type {
-  margin-top: 0;
+/* ─── DISPOSITIVOS · MARQUEE 3D CONTINUO ─── */
+.device-marquee {
+  position: relative;
+  margin-top: 40px;
+  padding: 36px 0 20px;
+  overflow: hidden;
+  perspective: 1300px;
+  /* Desvanecido en ambos bordes para que la cinta "entre y salga" */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
 }
 
-.devices-head {
+.marquee-track {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
+  gap: 22px;
+  width: max-content;
+  transform-style: preserve-3d;
+  animation: dev-marquee 46s linear infinite;
 }
 
-.devices-group-label {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #8B9CB6;
+/* Se mueve de izquierda a derecha, en loop sin costura (track duplicado) */
+@keyframes dev-marquee {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
 }
 
-.devices-arrows {
-  display: flex;
-  gap: 8px;
-}
-.devices-arrows .arrow {
-  width: 36px;
-  height: 36px;
-  font-size: 15px;
-}
-
-/* Pista desplazable con scroll-snap */
-.devices-carousel {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  padding: 4px 2px 14px;
-  scrollbar-width: none;
-  cursor: grab;
-}
-.devices-carousel:active {
-  cursor: grabbing;
-}
-.devices-carousel::-webkit-scrollbar {
-  height: 0;
+/* Pausa al pasar el cursor por la cinta */
+.device-marquee:hover .marquee-track {
+  animation-play-state: paused;
 }
 
 .device-card {
-  background: #111827;
-  border-radius: 14px;
-  width: 150px;
-  min-width: 150px;
-  height: 130px;
+  position: relative;
+  flex-shrink: 0;
+  width: 168px;
+  height: 152px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  flex-shrink: 0;
-  scroll-snap-align: start;
-  transition: border-color .25s cubic-bezier(.23,1,.32,1),
-              transform .25s cubic-bezier(.23,1,.32,1);
+  gap: 10px;
+  padding: 16px;
+  border-radius: 18px;
+  background: linear-gradient(158deg, #151b30 0%, #0d1322 100%);
+  border: 1px solid rgba(191, 0, 255, 0.14);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.42);
+  transform: rotateY(6deg);
+  transition: transform .45s cubic-bezier(.23,1,.32,1),
+              box-shadow .45s cubic-bezier(.23,1,.32,1),
+              border-color .3s cubic-bezier(.23,1,.32,1);
+  will-change: transform;
+}
+
+/* Reflejo superior tipo glass */
+.device-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), transparent 42%);
+  pointer-events: none;
 }
 
 .device-card.available {
-  border: 1.5px solid #16a34a;
+  border-color: rgba(34, 197, 94, 0.42);
 }
 .device-card.coming {
-  border: 1px solid #374151;
+  border-color: rgba(130, 140, 160, 0.22);
 }
+
 @media (hover: hover) and (pointer: fine) {
   .device-card:hover {
-    transform: translateY(-3px);
+    transform: rotateY(0deg) translateZ(36px) translateY(-6px);
+    box-shadow: 0 30px 60px rgba(191, 0, 255, 0.3);
   }
-  .device-card.available:hover {
-    border-color: #22c55e;
-  }
-  .device-card.coming:hover {
-    border-color: #4b5563;
-  }
+  .device-card.available:hover { border-color: rgba(34, 197, 94, 0.75); }
+  .device-card.coming:hover    { border-color: rgba(130, 140, 160, 0.45); }
 }
 
 .device-card img,
 .device-card .device-icon-text {
-  width: 52px;
-  height: 52px;
+  width: 54px;
+  height: 54px;
   object-fit: contain;
   filter: brightness(0) invert(1);
   pointer-events: none;
@@ -100,7 +92,7 @@
   align-items: center;
   justify-content: center;
   font-family: 'Orbitron', monospace;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 900;
   color: #fff;
   letter-spacing: 2px;
@@ -108,7 +100,7 @@
 }
 
 .device-card .device-name {
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 600;
   color: #fff;
   text-align: center;
@@ -116,30 +108,46 @@
 }
 
 .device-badge {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
   border-radius: 100px;
-  padding: 3px 9px;
+  padding: 3px 10px;
   display: inline-block;
 }
-
 .device-badge.badge-available {
   color: #22c55e;
-  background: rgba(22, 163, 74, 0.14);
+  background: rgba(22, 163, 74, 0.16);
 }
-
 .device-badge.badge-coming {
   color: #9ca3af;
-  background: rgba(107, 114, 128, 0.12);
+  background: rgba(107, 114, 128, 0.14);
 }
 
+/* Fallback sin animación: cinta centrada y desplazable manualmente */
+.device-marquee.static {
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-mask-image: none;
+  mask-image: none;
+  perspective: none;
+}
+.device-marquee.static::-webkit-scrollbar { height: 0; }
+.device-marquee.static .marquee-track {
+  animation: none;
+  justify-content: center;
+  min-width: 100%;
+  padding: 0 5%;
+}
+.device-marquee.static .device-card { transform: none; }
+
 @media (prefers-reduced-motion: reduce) {
-  .devices-carousel {
-    scroll-behavior: auto;
-  }
-  .device-card:hover {
-    transform: none;
-  }
+  .marquee-track { animation: none; }
+  .device-card { transform: none; }
+}
+
+@media (max-width: 560px) {
+  .device-card { width: 150px; height: 140px; }
+  .device-card img, .device-card .device-icon-text { width: 46px; height: 46px; }
 }
